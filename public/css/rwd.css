@@ -1,0 +1,75 @@
+@media (max-width: 779px) and (min-width: 480px) {
+    input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]), textarea, select {
+        width: 300px;
+    }
+
+    #menu, #header, #slider, #content, #bottombar, #footer {
+        min-width: 450px;
+    }
+
+    #button span {
+        display: none;
+    }
+
+    #button input {
+        top: -3px;
+    }
+
+    #slider {
+        display: none;
+    }
+
+    #content {
+        min-width: 400px;
+        -webkit-box-shadow: inset 0 2px 2px 0 rgba(50, 50, 50, 0.15);
+        -moz-box-shadow:    inset 0 2px 2px 0 rgba(50, 50, 50, 0.15);
+        box-shadow:         inset 0 2px 2px 0 rgba(50, 50, 50, 0.15);
+    }
+
+    #bottombar .bar {
+        width: 15%;
+    }
+}
+
+@media (max-width: 479px) {
+    input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]), textarea, select {
+        width: 150px;
+    }
+
+    #menu, #header, #slider, #content, #bottombar, #footer {
+        min-width: 300px;
+    }
+
+    #menu li {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    #button span {
+        display: none;
+    }
+
+    #button input {
+        top: -3px;
+    }
+
+    #slider {
+        display: none;
+    }
+
+    #content {
+        min-width: 250px;
+        -webkit-box-shadow: inset 0 2px 2px 0 rgba(50, 50, 50, 0.15);
+        -moz-box-shadow:    inset 0 2px 2px 0 rgba(50, 50, 50, 0.15);
+        box-shadow:         inset 0 2px 2px 0 rgba(50, 50, 50, 0.15);
+    }
+
+    #content img {
+        width: 220px;
+        height: 124px;
+    }
+
+    #bottombar .bar {
+        width: 30%;
+    }
+}

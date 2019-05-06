@@ -1,0 +1,7 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+ajax_city-list:
+    path: /ajax/city-list
+    controller: App\Controller\AjaxController::cityListAction

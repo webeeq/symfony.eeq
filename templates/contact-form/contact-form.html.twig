@@ -1,0 +1,31 @@
+{# templates/contact-form/contact-form.html.twig #}
+{% extends 'layout.html.twig' %}
+
+{% block title %}Kontakt{% endblock %}
+
+{% block record %}
+    <h2>Kontakt</h2>
+    {% if message %}
+        {{ message|raw }}
+    {% endif %}
+    {{ form_start(form) }}
+        <table>
+            <tr>
+                <td>E-mail:</td>
+                <td>{{ form_widget(form.email) }}</td>
+            </tr>
+            <tr>
+                <td>Temat:</td>
+                <td>{{ form_widget(form.subject) }}</td>
+            </tr>
+            <tr>
+                <td>Wiadomość:</td>
+                <td>{{ form_widget(form.message) }}</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>{{ form_widget(form.save, { 'label': 'Wyślij' }) }} {{ form_widget(form.reset, { 'label': 'Wyczyść' }) }}</td>
+            </tr>
+        </table>
+    {{ form_end(form) }}
+{% endblock %}

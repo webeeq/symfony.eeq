@@ -1,0 +1,52 @@
+{# templates/add-user/add-user.html.twig #}
+{% extends 'layout.html.twig' %}
+
+{% block title %}Rejestracja{% endblock %}
+
+{% block record %}
+    <h2>Rejestracja</h2>
+    <p>Rejestracja w systemie powoduje dodanie nowego użytkownika. Login i hasło mogą składać się wyłącznie z liter i cyfr. Nie mogą zawierać polskich znaków. Proszę pamiętać, aby wpisać trudne do odgadnięcia hasło. Należy podać koniecznie istniejący adres e-mail, na który wyślemy kod aktywacyjny. Podanie błędnego adresu e-mail uniemożliwi aktywację konta.</p>
+    {% if message %}
+        {{ message|raw }}
+    {% endif %}
+    {{ form_start(form) }}
+        <table>
+            <tr>
+                <td>Imię:</td>
+                <td>{{ form_widget(form.name) }}</td>
+            </tr>
+            <tr>
+                <td>Nazwisko:</td>
+                <td>{{ form_widget(form.surname) }}</td>
+            </tr>
+            <tr>
+                <td>Login:</td>
+                <td>{{ form_widget(form.login) }}</td>
+            </tr>
+            <tr>
+                <td>Hasło:</td>
+                <td>{{ form_widget(form.password) }}</td>
+            </tr>
+            <tr>
+                <td>Powtórz hasło:</td>
+                <td>{{ form_widget(form.repeatPassword) }}</td>
+            </tr>
+            <tr>
+                <td>E-mail:</td>
+                <td>{{ form_widget(form.email) }}</td>
+            </tr>
+            <tr>
+                <td>Powtórz e-mail:</td>
+                <td>{{ form_widget(form.repeatEmail) }}</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>{{ form_widget(form.accept) }} Akceptuję <a href="{{ url('mainpage') }}regulamin">regulamin</a></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>{{ form_widget(form.save, { 'label': 'Zatwierdź' }) }}</td>
+            </tr>
+        </table>
+    {{ form_end(form) }}
+{% endblock %}
