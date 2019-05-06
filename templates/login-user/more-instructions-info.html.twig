@@ -1,0 +1,13 @@
+{# templates/login-user/more-instructions-info.html.twig #}
+{% extends 'layout.html.twig' %}
+
+{% block title %}Informacja{% endblock %}
+
+{% block record %}
+    <h2>Informacja</h2>
+    {% if passwordChangeEmail %}
+        <p class="ok">Sprawdź pocztę w celu poznania dalszych instrukcji.</p>
+    {% else %}
+        <p class="bad">Wysłanie e-mail'a z dalszymi instrukcjami nie powiodło się.</p>
+    {% endif %}
+{% endblock %}

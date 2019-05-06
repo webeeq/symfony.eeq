@@ -1,0 +1,21 @@
+{# templates/accept-site/site-accepted-info.html.twig #}
+{% extends 'layout.html.twig' %}
+
+{% block title %}Informacja{% endblock %}
+
+{% block record %}
+    <h2>Informacja</h2>
+    <p class="{% if active and not acceptationEmail %}bad{% else %}ok{% endif %}">
+        {% if active %}
+            Strona www została zaakceptowana.<br />
+        {% endif %}
+        Dane strony www zostały zapisane.<br />
+        {% if active %}
+            {% if acceptationEmail %}
+                E-mail akceptacyjny został wysłany.
+            {% else %}
+                Wysłanie e-mail'a akceptacyjnego nie powiodło się.
+            {% endif %}
+        {% endif %}
+    </p>
+{% endblock %}

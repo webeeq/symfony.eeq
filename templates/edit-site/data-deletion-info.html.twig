@@ -1,0 +1,13 @@
+{# templates/edit-site/data-deletion-info.html.twig #}
+{% extends 'layout.html.twig' %}
+
+{% block title %}Informacja{% endblock %}
+
+{% block record %}
+    <h2>Informacja</h2>
+    {% if siteData %}
+        <p class="ok">Dane strony www zostały usunięte.</p>
+    {% else %}
+        <p class="bad">Usunięcie danych strony www nie powiodło się.</p>
+    {% endif %}
+{% endblock %}

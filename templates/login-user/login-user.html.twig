@@ -1,0 +1,40 @@
+{# templates/login-user/login-user.html.twig #}
+{% extends 'layout.html.twig' %}
+
+{% block title %}Logowanie{% endblock %}
+
+{% block record %}
+    <h2>Logowanie</h2>
+    <p>Opcja ta pozwala na zalogowanie użytkownika do systemu. Proszę podać login i hasło do swojego konta. Jeśli nie pamiętają Państwo hasła, system prześle na adres e-mail nowe. Można zapamiętać hasło w systemie, aby w przyszłości nie musieć się ponownie logować.</p>
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <table>
+            <tr>
+                <td>{{ form_label(form.login) }}</td>
+                <td>
+                    {{ form_errors(form.login) }}
+                    {{ form_widget(form.login) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.password) }}</td>
+                <td>
+                    {{ form_errors(form.password) }}
+                    {{ form_widget(form.password) }}
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>{{ form_widget(form.forget) }} {{ form_label(form.forget) }}</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>{{ form_widget(form.remember) }} {{ form_label(form.remember) }}</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>{{ form_widget(form.save) }}</td>
+            </tr>
+        </table>
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,318 @@
+@font-face {
+    font-family: "Apex New Book";
+    font-style: normal;
+    font-weight: normal;
+    src: url("/font/apexnew-book.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Apex New Medium";
+    font-style: normal;
+    font-weight: bold;
+    src: url("/font/apexnew-medium.woff") format("woff");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: #000000;
+    font-family: "Apex New Book", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+    text-transform: none;
+    text-align: justify;
+    line-height: 22px;
+    letter-spacing: 0;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: #FFFFFF;
+}
+
+a {
+    color: #989898;
+}
+
+a:hover {
+    color: #BCBCBC;
+}
+
+table {
+    width: 100%;
+}
+
+tr > td:first-of-type {
+    width: 150px;
+}
+
+td {
+    padding: 1px;
+    text-align: left;
+}
+
+input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]), textarea, select {
+    width: 600px;
+    padding: 1px;
+    border: 1px solid #BBBBBB;
+    background: #FFFFFF;
+}
+
+input[type="button"], input[type="submit"], input[type="reset"], button {
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid #9A9A9A;
+    background: #EAEAEA;
+    background-image: -webkit-linear-gradient(top, #F0F0F0 0%, #EAEAEA 50%, #E5E5E5 100%);
+    background-image: -moz-linear-gradient(top, #F0F0F0 0%, #EAEAEA 50%, #E5E5E5 100%);
+    background-image: -ms-linear-gradient(top, #F0F0F0 0%, #EAEAEA 50%, #E5E5E5 100%);
+    background-image: -o-linear-gradient(top, #F0F0F0 0%, #EAEAEA 50%, #E5E5E5 100%);
+    background-image: linear-gradient(to bottom, #F0F0F0 0%, #EAEAEA 50%, #E5E5E5 100%);
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover, button:hover {
+    border: 1px solid #737373;
+}
+
+input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:active, button:active {
+    background-image: -webkit-linear-gradient(bottom, #F0F0F0 0%, #EAEAEA 50%, #E5E5E5 100%);
+    background-image: -moz-linear-gradient(bottom, #F0F0F0 0%, #EAEAEA 50%, #E5E5E5 100%);
+    background-image: -ms-linear-gradient(bottom, #F0F0F0 0%, #EAEAEA 50%, #E5E5E5 100%);
+    background-image: -o-linear-gradient(bottom, #F0F0F0 0%, #EAEAEA 50%, #E5E5E5 100%);
+    background-image: linear-gradient(to top, #F0F0F0 0%, #EAEAEA 50%, #E5E5E5 100%);
+}
+
+#menu > nav, #header > header, #content > section, #bottombar > aside, #footer > footer {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#menu, #header, #slider, #content, #bottombar, #footer {
+    min-width: 750px;
+}
+
+#menu {
+    background: #5F5F5F;
+}
+
+#menu ul {
+    margin-top: -1px;
+    margin-left: 10px;
+    padding-top: 2px;
+    padding-bottom: 1px;
+    text-align: left;
+}
+
+#menu li {
+    margin-right: -5px;
+    padding: 4px;
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: inline;
+}
+
+#menu li, #menu li a {
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+#menu li:hover, #menu li:hover a, #menu li.active, #menu li.active a {
+    background: #FFFFFF;
+    color: #000000;
+    cursor: pointer;
+}
+
+#header > header {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+#header h1 {
+    margin-top: 15px;
+    margin-left: 25px;
+    margin-bottom: 10px;
+}
+
+#button {
+    z-index: 2;
+    position: absolute;
+    top: -12px;
+    right: 0;
+    height: 60px;
+    text-align: right;
+}
+
+#button input {
+    position: relative;
+    top: -26px;
+    right: 0;
+    width: 70px;
+    height: 60px;
+    margin: 3px;
+    margin-left: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#frame {
+    width: 100%;
+    height: 800px;
+    border: 1px solid #EAEAEA;
+    border-left: 0;
+    border-right: 0;
+    background: #FAFAFA;
+}
+
+#slider {
+    background: #03939B url("/image/slide.png") top left repeat-x;
+    -webkit-box-shadow: inset 0 2px 2px 0 rgba(50, 50, 50, 0.15);
+    -moz-box-shadow:    inset 0 2px 2px 0 rgba(50, 50, 50, 0.15);
+    box-shadow:         inset 0 2px 2px 0 rgba(50, 50, 50, 0.15);
+}
+
+#content {
+    min-width: 700px;
+    padding: 25px;
+    padding-top: 35px;
+}
+
+#content h2 {
+    margin-bottom: 20px;
+    font-family: "Apex New Medium", Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#content p, #content ol , #content ul , #content li, #content table {
+    margin-bottom: 18px;
+}
+
+#content li {
+    margin-left: 15px;
+}
+
+#content img {
+    margin: 10px;
+    border: 2px solid #009698;
+}
+
+#content .image {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#content form {
+    margin-top: 20px;
+}
+
+#content form ul {
+    padding: 15px;
+    border: 1px solid #E2B2B2;
+    background-color: #FFD4D4;
+}
+
+#content form td ul {
+    width: 586px;
+    margin-bottom: 4px;
+    padding: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#content form li {
+    margin: 0;
+    text-align: left;
+    list-style: none;
+}
+
+.ok {
+    padding: 15px;
+    border: 1px solid #A9DAA5;
+    background-color: #CCF8C8;
+}
+
+.bad {
+    padding: 15px;
+    border: 1px solid #E2B2B2;
+    background-color: #FFD4D4;
+}
+
+.info {
+    padding: 15px;
+    border: 1px solid #E2C37F;
+    background-color: #FFE3A6;
+}
+
+.option {
+    width: 40px;
+    text-align: right;
+}
+
+#bottombar {
+    float: left;
+    width: 100%;
+    padding-top: 35px;
+    padding-bottom: 25px;
+    background: #F8F8F8;
+    -webkit-box-shadow: 0 -2px 2px 0 rgba(50, 50, 50, 0.15);
+    -moz-box-shadow:    0 -2px 2px 0 rgba(50, 50, 50, 0.15);
+    box-shadow:         0 -2px 2px 0 rgba(50, 50, 50, 0.15);
+}
+
+#bottombar .bar {
+    float: left;
+    width: 18%;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+#bottombar .bar h2 {
+    margin-bottom: 12px;
+    font-family: "Apex New Medium", Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#bottombar .bar ul {
+    margin-bottom: 20px;
+}
+
+#bottombar .bar li, #bottombar .bar li a {
+    font-size: 14px;
+    text-align: left;
+    line-height: 20px;
+    list-style: none;
+}
+
+#footer {
+    clear: both;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+#footer p {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+#footer p, #footer a {
+    color: #989898;
+    font-size: 12px;
+}
+
+#footer a:hover {
+    text-decoration: underline;
+}
