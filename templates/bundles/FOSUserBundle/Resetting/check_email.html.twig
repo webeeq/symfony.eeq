@@ -1,0 +1,12 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% set activeMenu = 'login-user' %}
+
+{% block title %}Informacja{% endblock %}
+
+{% block fos_user_content %}
+    <h2>Informacja</h2>
+    <p class="ok">{{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}</p>
+{% endblock fos_user_content %}

@@ -1,0 +1,35 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<h2>Logowanie</h2>
+<p>Opcja ta pozwala na zalogowanie użytkownika do systemu. Proszę podać login i hasło do swojego konta. Jeśli nie pamiętają Państwo hasła, system prześle na adres e-mail nowe. Można zapamiętać hasło w systemie, aby w przyszłości nie musieć się ponownie logować.</p>
+{% if error %}
+    <p class="bad">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+{% endif %}
+<form action="{{ path("fos_user_security_check") }}" method="post">
+    <input type="hidden" name="_target_path" value="/konto" />
+    {% if csrf_token %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    {% endif %}
+    <table>
+        <tr>
+            <td><label for="username">{{ 'security.login.username'|trans }}</label></td>
+            <td><input type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" /></td>
+        </tr>
+        <tr>
+            <td><label for="password">{{ 'security.login.password'|trans }}</label></td>
+            <td><input type="password" id="password" name="_password" required="required" autocomplete="current-password" /></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="checkbox" id="remember_me" name="_remember_me" value="on" /> <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><a href="{{ url('main_page') }}resetowanie">Nie pamiętam hasła</a></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" /></td>
+        </tr>
+    </table>
+</form>

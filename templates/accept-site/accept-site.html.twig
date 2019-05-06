@@ -1,0 +1,48 @@
+{# templates/accept-site/accept-site.html.twig #}
+{% extends 'layout.html.twig' %}
+
+{% block title %}Akceptacja strony{% endblock %}
+
+{% block record %}
+    <h2>Akceptacja strony</h2>
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <p>Dane do moderacji:</p>
+        <table>
+            <tr>
+                <td>Link:</td>
+                <td><a href="{{ url('main_page') }}link?www={{ url|url_encode }}">{{ name }}</a></td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.name) }}</td>
+                <td>
+                    {{ form_errors(form.name) }}
+                    {{ form_widget(form.name) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.url) }}</td>
+                <td>
+                    {{ form_errors(form.url) }}
+                    {{ form_widget(form.url) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.active) }}</td>
+                <td>{{ form_widget(form.active) }}</td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.visible) }}</td>
+                <td>{{ form_widget(form.visible) }}</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>{{ form_widget(form.delete) }} {{ form_label(form.delete) }}</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>{{ form_widget(form.save) }} {{ form_widget(form.reset) }}</td>
+            </tr>
+        </table>
+    {{ form_end(form) }}
+{% endblock %}

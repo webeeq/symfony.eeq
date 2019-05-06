@@ -1,0 +1,9 @@
+{% extends 'layout.html.twig' %}
+
+{% if activeMenu is not defined %}
+    {% set activeMenu = '' %}
+{% endif %}
+
+{% block record %}
+    {% block fos_user_content %}{% endblock fos_user_content %}
+{% endblock %}

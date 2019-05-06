@@ -1,0 +1,86 @@
+group:
+    edit:
+        submit: 'Edytuj grupę'
+    show:
+        name: 'Nazwa grupy:'
+    new:
+        submit: 'Utwórz grupę'
+    flash:
+        updated: 'Grupa została zaktualizowana.'
+        created: 'Grupa została utworzona.'
+        deleted: 'Grupa została usunięta.'
+security:
+    login:
+        username: 'Login:'
+        password: 'Hasło:'
+        remember_me: 'Nie wylogowuj mnie'
+        submit: 'Zatwierdź'
+profile:
+    show:
+        username: 'Login:'
+        email: 'E-mail:'
+    edit:
+        submit: 'Zatwierdź'
+    flash:
+        updated: 'Zapisano zmiany w profilu.'
+change_password:
+    submit: 'Zatwierdź'
+    flash:
+        success: 'Hasło zostało zmienione.'
+registration:
+    check_email: 'Konto użytkownika zostało utworzone. Sprawdź e-mail "%email%" w celu aktywacji konta. Zawiera on link, który należy kliknąć.'
+    confirmed: 'Konto użytkownika zostało aktywowane.'
+    back: 'Powrót do poprzedniej strony.'
+    submit: 'Zatwierdź'
+    flash:
+        user_created: 'Stworzono użytkownika.'
+    email:
+        subject: 'Aktywacja konta'
+        message: |
+            Aktywacja konta %username%
+
+            Aby aktywować konto, otwórz w oknie przeglądarki url poniżej.
+
+            %confirmationUrl%
+
+            --
+            SIECIQ
+
+resetting:
+    check_email: |
+        E-mail został wysłany. Zawiera on link do formularza zmiany hasła.
+        Uwaga: Możesz zresetować hasło tylko jeden raz w ciągu %tokenLifetime% godzin.
+
+    request:
+        username: 'Nazwa użytkownika lub e-mail (login):'
+        submit: 'Zatwierdź'
+    reset:
+        submit: 'Zatwierdź'
+    flash:
+        success: 'Hasło zostało zresetowane.'
+    email:
+        subject: 'Resetowanie hasła konta'
+        message: |
+            Resetowanie hasła konta %username%
+
+            Aby zresetować hasło konta, otwórz w oknie przeglądarki url poniżej.
+
+            %confirmationUrl%
+
+            --
+            SIECIQ
+
+layout:
+    logout: 'Wyloguj'
+    login: 'Zaloguj'
+    register: 'Zarejestruj'
+    logged_in_as: 'Zalogowano jako: %username%'
+form:
+    group_name: 'Nazwa grupy:'
+    username: 'Login:'
+    email: 'E-mail:'
+    current_password: 'Obecne hasło:'
+    password: 'Hasło:'
+    password_confirmation: 'Powtórz hasło:'
+    new_password: 'Nowe hasło:'
+    new_password_confirmation: 'Powtórz hasło:'

@@ -1,0 +1,33 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<h2>Edycja profilu</h2>
+{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+    {{ form_errors(form) }}
+    <table>
+        <tr>
+            <td>{{ form_label(form.username) }}</td>
+            <td>
+                {{ form_errors(form.username) }}
+                {{ form_widget(form.username) }}
+            </td>
+        </tr>
+        <tr>
+            <td>{{ form_label(form.email) }}</td>
+            <td>
+                {{ form_errors(form.email) }}
+                {{ form_widget(form.email) }}
+            </td>
+        </tr>
+        <tr>
+            <td>{{ form_label(form.current_password) }}</td>
+            <td>
+                {{ form_errors(form.current_password) }}
+                {{ form_widget(form.current_password) }}
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" value="{{ 'profile.edit.submit'|trans }}" /></td>
+        </tr>
+    </table>
+{{ form_end(form) }}

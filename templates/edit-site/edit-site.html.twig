@@ -1,0 +1,45 @@
+{# templates/edit-site/edit-site.html.twig #}
+{% extends 'layout.html.twig' %}
+
+{% block title %}Edycja strony{% endblock %}
+
+{% block record %}
+    <h2>Edycja strony</h2>
+    <p>Edycja strony pozwala określić, czy ma być ona widoczna dla innych uczestników systemu. Można także zmienić jej nazwę lub w ogóle usunąć z systemu.</p>
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <p>Dane strony www:</p>
+        <table>
+            <tr>
+                <td>Link:</td>
+                <td><a href="{{ url('main_page') }}link?www={{ url|url_encode }}">{{ name }}</a></td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.name) }}</td>
+                <td>
+                    {{ form_errors(form.name) }}
+                    {{ form_widget(form.name) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.url) }}</td>
+                <td>
+                    {{ form_errors(form.url) }}
+                    {{ form_widget(form.url) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.visible) }}</td>
+                <td>{{ form_widget(form.visible) }}</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>{{ form_widget(form.delete) }} {{ form_label(form.delete) }}</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>{{ form_widget(form.save) }} {{ form_widget(form.reset) }}</td>
+            </tr>
+        </table>
+    {{ form_end(form) }}
+{% endblock %}

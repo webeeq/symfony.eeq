@@ -1,0 +1,25 @@
+fos_user:
+    username:
+        already_used: 'Konto o podanym loginie już istnieje.'
+        blank: 'Proszę podać login do konta.'
+        short: 'Login musi zawierać minimalnie 2 znaki.'
+        long: 'Login może zawierać maksymalnie 50 znaków.'
+    email:
+        already_used: 'Podany adres e-mail jest już zajęty.'
+        blank: 'Proszę podać adres e-mail.'
+        short: 'Podany adres e-mail jest za krótki.'
+        long: 'Podany adres e-mail jest za długi.'
+        invalid: 'Podany adres e-mail jest nieprawidłowy.'
+    password:
+        blank: 'Proszę podać hasło.'
+        short: 'Hasło musi zawierać minimalnie 2 znaki.'
+        mismatch: 'Hasło i powtórzone hasło nie są zgodne.'
+    new_password:
+        blank: 'Proszę podać nowe hasło.'
+        short: 'Nowe hasło musi zawierać minimalnie 2 znaki.'
+    current_password:
+        invalid: 'Podane hasło jest nieprawidłowe.'
+    group:
+        blank: 'Proszę podać nazwę grupy.'
+        short: 'Podana nazwa grupy jest za krótka.'
+        long: 'Podana nazwa grupy jest za długa.'

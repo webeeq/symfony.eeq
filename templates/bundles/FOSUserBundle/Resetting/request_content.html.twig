@@ -1,0 +1,15 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<h2>Resetowanie hasła</h2>
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+    <table>
+        <tr>
+            <td><label for="username">{{ 'resetting.request.username'|trans }}</label></td>
+            <td><input type="text" id="username" name="username" required="required" /></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" value="{{ 'resetting.request.submit'|trans }}" /></td>
+        </tr>
+    </table>
+</form>

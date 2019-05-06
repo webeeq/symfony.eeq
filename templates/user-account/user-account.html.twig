@@ -1,0 +1,62 @@
+{# templates/user-account/user-account.html.twig #}
+{% extends 'layout.html.twig' %}
+
+{% block title %}Konto{% endblock %}
+
+{% block record %}
+    <h2>Konto</h2>
+    <p>Na tej podstronie można wybrać edycję danych użytkownika. Można także dodawać nowe strony i wybrać edycję ich widoczności w systemie. Państwa dane osobowe nie są wyświetlane innym członkom systemu. Służą jedynie do komunikacji z Państwem przez administrację systemu. Pozostałe kliknięcia informują, ile razy Państwa strony wyświetlą się innym użytkownikom systemu.</p>
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <p>Użytkownik:</p>
+        <table>
+            <tr>
+                <td><a href="{{ url('main_page') }}konto/uzytkownik,{{ userData.id }},edycja">{{ userData.name }} {{ userData.surname }}</a></td>
+                <td class="option"><a href="{{ url('main_page') }}konto/uzytkownik,{{ userData.id }},edycja">Edytuj</a></td>
+            </tr>
+        </table>
+        <p>Pozostało kliknięć:</p>
+        <p>{{ userData.show }}</p>
+        <p>Lista stron www:</p>
+        <table>
+            {% if not siteList %}
+                <tr>
+                    <td colspan="2">Brak</td>
+                </tr>
+            {% else %}
+                {% for site in siteList %}
+                    <tr>
+                        <td><a href="{{ url('main_page') }}konto/strona,{{ site.id }},edycja">{{ site.name }}</a></td>
+                        <td class="option"><a href="{{ url('main_page') }}konto/strona,{{ site.id }},edycja">Edytuj</a></td>
+                    </tr>
+                {% endfor %}
+                {% if pageNavigator %}
+                    <tr>
+                        <td colspan="2">{{ pageNavigator|raw }}</td>
+                    </tr>
+                {% endif %}
+            {% endif %}
+        </table>
+        <p>Dodaj stronę www:</p>
+        <table>
+            <tr>
+                <td>{{ form_label(form.name) }}</td>
+                <td>
+                    {{ form_errors(form.name) }}
+                    {{ form_widget(form.name) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.url) }}</td>
+                <td>
+                    {{ form_errors(form.url) }}
+                    {{ form_widget(form.url) }}
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>{{ form_widget(form.save) }}</td>
+            </tr>
+        </table>
+    {{ form_end(form) }}
+{% endblock %}

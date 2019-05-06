@@ -1,0 +1,10 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+login_page:
+    path: /logowanie
+
+ajax_city_list:
+    path: /ajax/city-list
+    controller: App\Controller\AjaxController::cityListAction

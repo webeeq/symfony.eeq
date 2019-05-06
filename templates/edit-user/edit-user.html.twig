@@ -1,0 +1,157 @@
+{# templates/edit-user/edit-user.html.twig #}
+{% extends 'layout.html.twig' %}
+
+{% block title %}Edycja użytkownika{% endblock %}
+
+{% block record %}
+    <h2>Edycja użytkownika</h2>
+    <p>Proszę podać możliwie najpełniejsze dane, aby zapewnić jak najlepszy kontakt. Zmiana adresu e-mail spowoduje konieczność ponownej aktywacji konta. Jeśli nie chcą Państwo zmieniać adresu e-mail, proszę pozostawić dwa pola dotyczące zmiany adresu e-mail puste. Jeśli nie chcą Państwo zmieniać hasła, proszę pozostawić trzy pola dotyczące zmiany hasła puste.</p>
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <p>Dane użytkownika:</p>
+        <table>
+            <tr>
+                <td>{{ form_label(form.name) }}</td>
+                <td>
+                    {{ form_errors(form.name) }}
+                    {{ form_widget(form.name) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.surname) }}</td>
+                <td>
+                    {{ form_errors(form.surname) }}
+                    {{ form_widget(form.surname) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.street) }}</td>
+                <td>
+                    {{ form_errors(form.street) }}
+                    {{ form_widget(form.street) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.postcode) }}</td>
+                <td>
+                    {{ form_errors(form.postcode) }}
+                    {{ form_widget(form.postcode) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.province) }}</td>
+                <td>{{ form_widget(form.province) }}</td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.city) }}</td>
+                <td id="select1">{{ form_widget(form.city) }}</td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.phone) }}</td>
+                <td>
+                    {{ form_errors(form.phone) }}
+                    {{ form_widget(form.phone) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.email) }}</td>
+                <td>
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.url) }}</td>
+                <td>
+                    {{ form_errors(form.url) }}
+                    {{ form_widget(form.url) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.description) }}</td>
+                <td>
+                    {{ form_errors(form.description) }}
+                    {{ form_widget(form.description) }}
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>{{ form_widget(form.save) }} {{ form_widget(form.reset) }}</td>
+            </tr>
+        </table>
+        <p>Zmień e-mail:</p>
+        <table>
+            <tr>
+                <td>{{ form_label(form.newEmail) }}</td>
+                <td>
+                    {{ form_errors(form.newEmail) }}
+                    {{ form_widget(form.newEmail) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.repeatEmail) }}</td>
+                <td>
+                    {{ form_errors(form.repeatEmail) }}
+                    {{ form_widget(form.repeatEmail) }}
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>{{ form_widget(form.save2) }} {{ form_widget(form.reset2) }}</td>
+            </tr>
+        </table>
+        <p>Zmień hasło:</p>
+        <table>
+            <tr>
+                <td>{{ form_label(form.login) }}</td>
+                <td>
+                    {{ form_errors(form.login) }}
+                    {{ form_widget(form.login) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.password) }}</td>
+                <td>
+                    {{ form_errors(form.password) }}
+                    {{ form_widget(form.password) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.newPassword) }}</td>
+                <td>
+                    {{ form_errors(form.newPassword) }}
+                    {{ form_widget(form.newPassword) }}
+                </td>
+            </tr>
+            <tr>
+                <td>{{ form_label(form.repeatPassword) }}</td>
+                <td>
+                    {{ form_errors(form.repeatPassword) }}
+                    {{ form_widget(form.repeatPassword) }}
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>{{ form_widget(form.save3) }} {{ form_widget(form.reset3) }}</td>
+            </tr>
+        </table>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block ajax %}
+    <script type="text/javascript">
+        function ajax(value) {
+            $.post('{{ path('ajax_city_list') }}', {inData: value, inData2: {{ selectedCity }}}, function(response) {
+                if (response.code == 100 && response.success) {
+                    $('#select1').html(response.outData);
+                }
+            }, 'json');
+        }
+
+        $(document).ready(function() {
+            $('#edit_user_form_province').change(function() {
+                ajax(this.value);
+            });
+        });
+    </script>
+{% endblock %}

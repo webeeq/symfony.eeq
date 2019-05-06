@@ -1,0 +1,12 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% set activeMenu = 'add-user' %}
+
+{% block title %}Informacja{% endblock %}
+
+{% block fos_user_content %}
+    <h2>Informacja</h2>
+    <p class="ok">{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+{% endblock fos_user_content %}
