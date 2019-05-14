@@ -3,7 +3,7 @@
 // src/Controller/AjaxController.php
 namespace App\Controller;
 
-use App\Bundle\Html;
+use App\Html\CitySelectHtml;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\{JsonResponse, Request};
 
@@ -11,7 +11,7 @@ class AjaxController extends Controller
 {
     public function cityListAction(Request $request): object
     {
-        $html = new Html();
+        $html = new CitySelectHtml();
 
         $selectedProvince = (int) $request->get('inData');
         $selectedCity = (int) $request->get('inData2');

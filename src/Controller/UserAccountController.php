@@ -3,7 +3,8 @@
 // src/Controller/UserAccountController.php
 namespace App\Controller;
 
-use App\Bundle\{Config, Html};
+use App\Bundle\Config;
+use App\Html\PageNavigatorHtml;
 use App\Service\UserAccountService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +18,7 @@ class UserAccountController extends Controller
     public function userAccountAction(Request $request): object
     {
         $config = new Config($this);
-        $html = new Html();
+        $html = new PageNavigatorHtml();
         $em = $this->getDoctrine()->getManager();
 
         $userData = $em->getRepository('App:User')
@@ -44,7 +45,7 @@ class UserAccountController extends Controller
         int $level
     ): object {
         $config = new Config($this);
-        $html = new Html();
+        $html = new PageNavigatorHtml();
         $em = $this->getDoctrine()->getManager();
 
         if ($account != $this->getUser()->getId()) {

@@ -1,33 +1,10 @@
 <?php declare(strict_types=1);
 
-// src/Bundle/Html.php
-namespace App\Bundle;
+// src/Html/PageNavigatorHtml.php
+namespace App\Html;
 
-class Html
+class PageNavigatorHtml
 {
-    public function prepareCitySelect(
-        array $cityList,
-        int $selectedCity
-    ): string {
-        $citySelect =
-            '<select id="edit_user_form_city" name="edit_user_form[city]">';
-        $citySelect .= '<option value="0">&nbsp;</option>';
-        foreach ($cityList as $city) {
-            $citySelect .= '<option value="' . $city->getId() . '"'
-                . (($city->getId() == $selectedCity) ? ' selected="selected"'
-                : '') . '>' . $city->getName() . '</option>';
-        }
-        $citySelect .= '</select>';
-
-        return $citySelect;
-    }
-
-    public function prepareMessage(string $message, bool $ok): string
-    {
-        return ($message != '') ? '<p class="' . (($ok) ? 'ok' : 'bad') . '">'
-            . str_replace("\r\n", '<br />', $message) . '</p>' . "\r\n" : '';
-    }
-
     public function preparePageNavigator(
         string $url,
         int $level,

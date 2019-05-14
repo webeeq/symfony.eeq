@@ -3,7 +3,8 @@
 // src/Service/UserAccountService.php
 namespace App\Service;
 
-use App\Bundle\{Config, Html};
+use App\Bundle\Config;
+use App\Html\PageNavigatorHtml;
 use App\Controller\UserAccountController;
 use App\Entity\Site;
 use App\Form\Type\UserAccountFormType;
@@ -20,7 +21,7 @@ class UserAccountService extends Controller
     public function __construct(
         UserAccountController $controller,
         Config $config,
-        Html $html
+        PageNavigatorHtml $html
     ) {
         $this->controller = $controller;
         $this->config = $config;

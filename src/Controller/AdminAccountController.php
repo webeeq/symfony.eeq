@@ -3,7 +3,8 @@
 // src/Controller/AdminAccountController.php
 namespace App\Controller;
 
-use App\Bundle\{Config, Html};
+use App\Bundle\Config;
+use App\Html\PageNavigatorHtml;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -15,7 +16,7 @@ class AdminAccountController extends Controller
     public function adminAccountAction(): object
     {
         $config = new Config($this);
-        $html = new Html();
+        $html = new PageNavigatorHtml();
         $em = $this->getDoctrine()->getManager();
 
         $userData = $em->getRepository('App:User')
@@ -47,7 +48,7 @@ class AdminAccountController extends Controller
         int $level
     ): object {
         $config = new Config($this);
-        $html = new Html();
+        $html = new PageNavigatorHtml();
         $em = $this->getDoctrine()->getManager();
 
         if ($account != $this->getUser()->getId()) {
