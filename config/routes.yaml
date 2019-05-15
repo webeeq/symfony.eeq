@@ -7,4 +7,4 @@ login_page:
 
 ajax_city_list:
     path: /ajax/city-list
-    controller: App\Controller\AjaxController::cityListAction
+    controller: App\Controller\Ajax\CityListController::cityListAction

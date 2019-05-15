@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-// src/Controller/AjaxController.php
-namespace App\Controller;
+// src/Controller/Ajax/CityListController.php
+namespace App\Controller\Ajax;
 
 use App\Html\CitySelectHtml;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\{JsonResponse, Request};
 
-class AjaxController extends Controller
+class CityListController extends Controller
 {
     public function cityListAction(Request $request): object
     {
