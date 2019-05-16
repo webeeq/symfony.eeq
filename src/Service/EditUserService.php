@@ -7,6 +7,7 @@ use App\Bundle\Config;
 use App\Controller\EditUserController;
 use App\Form\EditUserForm;
 use App\Form\Type\EditUserFormType;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -29,18 +30,7 @@ class EditUserService extends Controller
         $em = $this->controller->getDoctrine()->getManager();
 
         $userData = $em->getRepository('App:User')->getUserData($user);
-        $editUserForm = new EditUserForm($em, $user);
-        EditUserFormType::init($em, 0);
-        $form = $this->controller->createForm(
-            EditUserFormType::class,
-            $editUserForm
-        );
-        $form->handleRequest($request);
-        $province = $editUserForm->getProvince()
-            ?? (($userData->getProvince() !== null)
-            ? $userData->getProvince()->getId() : 0);
-        unset($editUserForm);
-        unset($form);
+        $province = $this->getProvince($request, $em, $user, $userData);
 
         $editUserForm = new EditUserForm($em, $user);
         EditUserFormType::init($em, $province);
@@ -57,25 +47,7 @@ class EditUserService extends Controller
                 );
             }
             $key = $em->getRepository('App:User')->generateKey();
-            $userData = $em->getRepository('App:User')->setUserData(
-                $user,
-                ($editUserForm->getProvince() >= 1)
-                    ? $editUserForm->getProvince() : null,
-                ($editUserForm->getCity() >= 1)
-                    ? $editUserForm->getCity() : null,
-                $editUserForm->getName(),
-                $editUserForm->getSurname(),
-                $editUserForm->getNewPassword() ?? '',
-                $key,
-                $editUserForm->getNewEmail() ?? '',
-                $editUserForm->getUrl() ?? '',
-                $editUserForm->getPhone() ?? '',
-                $editUserForm->getStreet() ?? '',
-                $editUserForm->getPostcode() ?? '',
-                $editUserForm->getDescription() ?? '',
-                $this->config->getRemoteAddress(),
-                $this->config->getDateTimeNow()
-            );
+            $userData = $this->setUserData($em, $user, $key, $editUserForm);
             if ($userData) {
                 $newPassword = $editUserForm->getNewPassword();
                 if ($newPassword != '') {
@@ -107,23 +79,7 @@ class EditUserService extends Controller
                 );
             }
         } else {
-            $editUserForm->setName($userData->getName());
-            $editUserForm->setSurname($userData->getSurname());
-            $editUserForm->setStreet($userData->getStreet());
-            $editUserForm->setPostcode($userData->getPostcode());
-            $editUserForm->setProvince(
-                ($userData->getProvince() !== null) 
-                    ? $userData->getProvince()->getId() : 0
-            );
-            $editUserForm->setCity(
-                ($userData->getCity() !== null) 
-                    ? $userData->getCity()->getId() : 0
-            );
-            $editUserForm->setPhone($userData->getPhone());
-            $editUserForm->setEmail($userData->getEmail());
-            $editUserForm->setUrl($userData->getUrl());
-            $editUserForm->setDescription($userData->getDescription());
-            $editUserForm->setLogin($userData->getUsername());
+            $this->setEditUserForm($userData, $editUserForm);
             $form = $this->controller->createForm(
                 EditUserFormType::class,
                 $editUserForm
@@ -136,6 +92,80 @@ class EditUserService extends Controller
             'form' => $form->createView(),
             'selectedCity' => $editUserForm->getCity()
         ));
+    }
+
+    private function getProvince(
+        Request $request,
+        EntityManager $em,
+        int $user,
+        object $userData
+    ): int {
+        $editUserForm = new EditUserForm($em, $user);
+        EditUserFormType::init($em, 0);
+        $form = $this->controller->createForm(
+            EditUserFormType::class,
+            $editUserForm
+        );
+        $form->handleRequest($request);
+        $province = $editUserForm->getProvince()
+            ?? (($userData->getProvince() !== null)
+            ? $userData->getProvince()->getId() : 0);
+        unset($editUserForm);
+        unset($form);
+
+        return $province;
+    }
+
+    private function setUserData(
+        EntityManager $em,
+        int $user,
+        string $key,
+        object $editUserForm
+    ): int {
+        $userData = $em->getRepository('App:User')->setUserData(
+            $user,
+            ($editUserForm->getProvince() >= 1)
+                ? $editUserForm->getProvince() : null,
+            ($editUserForm->getCity() >= 1)
+                ? $editUserForm->getCity() : null,
+            $editUserForm->getName(),
+            $editUserForm->getSurname(),
+            $editUserForm->getNewPassword() ?? '',
+            $key,
+            $editUserForm->getNewEmail() ?? '',
+            $editUserForm->getUrl() ?? '',
+            $editUserForm->getPhone() ?? '',
+            $editUserForm->getStreet() ?? '',
+            $editUserForm->getPostcode() ?? '',
+            $editUserForm->getDescription() ?? '',
+            $this->config->getRemoteAddress(),
+            $this->config->getDateTimeNow()
+        );
+
+        return $userData;
+    }
+
+    private function setEditUserForm(
+        object $userData,
+        object &$editUserForm
+    ): void {
+        $editUserForm->setName($userData->getName());
+        $editUserForm->setSurname($userData->getSurname());
+        $editUserForm->setStreet($userData->getStreet());
+        $editUserForm->setPostcode($userData->getPostcode());
+        $editUserForm->setProvince(
+            ($userData->getProvince() !== null) 
+                ? $userData->getProvince()->getId() : 0
+        );
+        $editUserForm->setCity(
+            ($userData->getCity() !== null) 
+                ? $userData->getCity()->getId() : 0
+        );
+        $editUserForm->setPhone($userData->getPhone());
+        $editUserForm->setEmail($userData->getEmail());
+        $editUserForm->setUrl($userData->getUrl());
+        $editUserForm->setDescription($userData->getDescription());
+        $editUserForm->setLogin($userData->getUsername());
     }
 
     private function sendActivationEmail(
