@@ -12,4 +12,4 @@ fos_user:
         confirmation:
             enabled: true
         form:
-            type: App\Form\Type\RegistrationType
+            type: App\Form\Type\RegisterUserFormType

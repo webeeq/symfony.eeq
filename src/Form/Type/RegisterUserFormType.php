@@ -1,13 +1,13 @@
 <?php
 
-// src/Form/Type/RegistrationType.php
+// src/Form/Type/RegisterUserFormType.php
 namespace App\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\{CheckboxType, TextType};
 use Symfony\Component\Form\FormBuilderInterface;
 
-class RegistrationType extends AbstractType
+class RegisterUserFormType extends AbstractType
 {
     public function buildForm(
         FormBuilderInterface $builder,
