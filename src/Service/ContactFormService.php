@@ -49,12 +49,12 @@ class ContactFormService extends Controller
         ));
     }
 
-    private function sendContactEmail(object $contactFormForm): int
+    private function sendContactEmail(object $form): int
     {
-        $emailFrom = $contactFormForm->getEmail();
+        $emailFrom = $form->getEmail();
         $emailTo = $this->config->getAdminEmail();
-        $subject = $contactFormForm->getSubject();
-        $text = $contactFormForm->getMessage();
+        $subject = $form->getSubject();
+        $text = $form->getMessage();
         $message = (new \Swift_Message($subject))
             ->setFrom($emailFrom)
             ->setTo($emailTo)
