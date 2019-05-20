@@ -11,7 +11,8 @@ class DeleteSiteService extends Controller
 {
     protected $controller;
 
-    public function __construct(DeleteSiteController $controller) {
+    public function __construct(DeleteSiteController $controller)
+    {
         $this->controller = $controller;
     }
 
