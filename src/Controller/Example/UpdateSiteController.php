@@ -19,7 +19,7 @@ class UpdateSiteController extends Controller
         $auth->password = '!@#$%^&*()';
 
         $updateSite = new UpdateSite();
-        $updateSite->id = 7;
+        $updateSite->id = 8;
         $updateSite->name = 'Fachowcy';
         $updateSite->visible = true;
 

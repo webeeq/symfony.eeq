@@ -34,9 +34,8 @@ class AcceptSiteForm
      */
     public function isUrlValid(): bool
     {
-        $urlValid = $this->url != ''
-            && substr($this->url, 0, 7) !== 'http://'
-            && substr($this->url, 0, 8) !== 'https://';
+        $urlValid = substr($this->url, 0, 7) != 'http://'
+            && substr($this->url, 0, 8) != 'https://';
 
         return $urlValid;
     }

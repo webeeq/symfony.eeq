@@ -5,72 +5,53 @@ namespace App\Service\Api;
 
 use App\Bundle\Config;
 use App\Controller\Api\UpdateSiteController;
-use App\Entity\Site;
+use App\Validator\Api\UpdateSiteValidator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class UpdateSiteService extends Controller
 {
     protected $controller;
     protected $config;
+    protected $validator;
 
     public function __construct(
         UpdateSiteController $controller,
-        Config $config
+        Config $config,
+        UpdateSiteValidator $validator
     ) {
         $this->controller = $controller;
         $this->config = $config;
+        $this->validator = $validator;
     }
 
     public function updateSiteMessage(
         string $user,
         string $password,
-        ?object $data,
-        object $message
+        object $data
     ): object {
         $em = $this->controller->getDoctrine()->getManager();
 
-        $restUserPassword = $em->getRepository('App:User')
-            ->getRestUserPassword($user);
-        $passwordVerify = password_verify(
-            $password,
-            ($restUserPassword) ? $restUserPassword->getPassword() : ''
-        );
-        if ($passwordVerify) {
-            $restUserSite = $em->getRepository('App:Site')
-                ->isRestUserSite($restUserPassword->getId(), $data->id);
-            if (!$restUserSite) {
-                $message->addMessage(
-                    'Baza nie zawiera podanej strony dla autoryzacji.'
+        $this->validator->validate($user, $password, $data);
+        if ($this->validator->isValid()) {
+            $siteData = $em->getRepository('App:Site')->setSiteData(
+                $data->id,
+                $data->visible,
+                $data->name,
+                $this->config->getRemoteAddress(),
+                $this->config->getDateTimeNow()
+            );
+            if ($siteData) {
+                $this->validator->addMessage(
+                    'Dane strony www zostały zapisane.'
+                );
+                $this->validator->setOk(true);
+            } else {
+                $this->validator->addMessage(
+                    'Zapisanie danych strony www nie powiodło się.'
                 );
             }
-            if (strlen($data->name) < 1) {
-                $message->addMessage('Nazwa strony www musi zostać podana.');
-            } elseif (strlen($data->name) > 180) {
-                $message->addMessage(
-                    'Nazwa strony www może zawierać maksymalnie 180 znaków.'
-                );
-            }
-            if (!$message->isMessage()) {
-                $siteData = $em->getRepository('App:Site')->setSiteData(
-                    $data->id,
-                    $data->visible,
-                    $data->name,
-                    $this->config->getRemoteAddress(),
-                    $this->config->getDateTimeNow()
-                );
-                if ($siteData) {
-                    $message->addMessage('Dane strony www zostały zapisane.');
-                    $message->setOk(true);
-                } else {
-                    $message->addMessage(
-                        'Zapisanie danych strony www nie powiodło się.'
-                    );
-                }
-            }
-        } else {
-            $message->addMessage('Błędna autoryzacja przesyłanych danych.');
         }
 
-        return $message;
+        return $this->validator;
     }
 }

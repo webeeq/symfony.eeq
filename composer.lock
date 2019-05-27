@@ -5910,12 +5910,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webeeq/sieciq.git",
-                "reference": "cfe1ef5333dff07974f5f31c45b233c7d56bacce"
+                "reference": "6ddc9d1df99a654153a1377c0ba3d846038dcc99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webeeq/sieciq/zipball/cfe1ef5333dff07974f5f31c45b233c7d56bacce",
-                "reference": "cfe1ef5333dff07974f5f31c45b233c7d56bacce",
+                "url": "https://api.github.com/repos/webeeq/sieciq/zipball/6ddc9d1df99a654153a1377c0ba3d846038dcc99",
+                "reference": "6ddc9d1df99a654153a1377c0ba3d846038dcc99",
                 "shasum": ""
             },
             "require": {
@@ -5933,7 +5933,7 @@
                 "proprietary"
             ],
             "description": "A library for SIECIQ website's REST API.",
-            "time": "2019-04-04T18:05:08+00:00"
+            "time": "2019-05-27T12:39:55+00:00"
         },
         {
             "name": "webmozart/assert",

@@ -3,8 +3,9 @@
 // src/Controller/Api/AddSiteController.php
 namespace App\Controller\Api;
 
-use App\Bundle\{Config, Message, Response};
+use App\Bundle\{Config, Response};
 use App\Service\Api\AddSiteService;
+use App\Validator\Api\AddSiteValidator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\{JsonResponse, Request};
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,24 +13,27 @@ use Symfony\Component\Routing\Annotation\Route;
 class AddSiteController extends Controller
 {
     /**
-     * @Route("/rest/add-site")
+     * @Route("/api/add-site")
      */
     public function addSiteAction(Request $request): object
     {
         $config = new Config($this);
-        $message = new Message();
+        $validator = new AddSiteValidator(
+            $this->getDoctrine()->getManager()
+        );
 
         $user = $request->headers->get('php-auth-user') ?? '';
         $password = $request->headers->get('php-auth-pw') ?? '';
 
-        $data = json_decode($request->getContent());
+        $data = json_decode(
+            ($request->getContent()) ? $request->getContent() : '{}'
+        );
 
-        $addSiteService = new AddSiteService($this, $config);
+        $addSiteService = new AddSiteService($this, $config, $validator);
         $message = $addSiteService->addSiteMessage(
             $user,
             $password,
-            $data,
-            $message
+            $data
         );
 
         $response = new Response();

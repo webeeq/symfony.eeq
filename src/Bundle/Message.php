@@ -45,6 +45,11 @@ class Message
         return ($this->message != '') ? true : false;
     }
 
+    public function isValid(): bool
+    {
+        return ($this->message == '') ? true : false;
+    }
+
     public function setOk(bool $ok): void
     {
         $this->ok = $ok;

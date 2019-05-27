@@ -3,8 +3,9 @@
 // src/Controller/Api/UpdateSiteController.php
 namespace App\Controller\Api;
 
-use App\Bundle\{Config, Message, Response};
+use App\Bundle\{Config, Response};
 use App\Service\Api\UpdateSiteService;
+use App\Validator\Api\UpdateSiteValidator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\{JsonResponse, Request};
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,24 +13,27 @@ use Symfony\Component\Routing\Annotation\Route;
 class UpdateSiteController extends Controller
 {
     /**
-     * @Route("/rest/update-site")
+     * @Route("/api/update-site")
      */
     public function updateSiteAction(Request $request): object
     {
         $config = new Config($this);
-        $message = new Message();
+        $validator = new UpdateSiteValidator(
+            $this->getDoctrine()->getManager()
+        );
 
         $user = $request->headers->get('php-auth-user') ?? '';
         $password = $request->headers->get('php-auth-pw') ?? '';
 
-        $data = json_decode($request->getContent());
+        $data = json_decode(
+            ($request->getContent()) ? $request->getContent() : '{}'
+        );
 
-        $updateSiteService = new UpdateSiteService($this, $config);
+        $updateSiteService = new UpdateSiteService($this, $config, $validator);
         $message = $updateSiteService->updateSiteMessage(
             $user,
             $password,
-            $data,
-            $message
+            $data
         );
 
         $response = new Response();

@@ -19,7 +19,7 @@ class DeleteSiteController extends Controller
         $auth->password = '!@#$%^&*()';
 
         $deleteSite = new DeleteSite();
-        $deleteSite->id = 7;
+        $deleteSite->id = 8;
 
         $config = new Config();
         $order = new Order($config);

@@ -60,7 +60,7 @@ class UserRepository extends ServiceEntityRepository
         return $query->getOneOrNullResult();
     }
 
-    public function getRestUserPassword(string $login): ?object
+    public function getApiUserPassword(string $login): ?object
     {
         $query = $this->getEntityManager()->createQuery(
             'SELECT u FROM App:User u

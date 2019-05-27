@@ -194,13 +194,10 @@ class EditUserForm
      */
     public function isRepeatPasswordValid(): int
     {
-        $repeatPasswordValid =
-            preg_match(
-                '/^([!@#$%^&*()0-9A-Za-z]*)$/',
-                $this->repeatPassword ?? ''
-            );
-
-        return $repeatPasswordValid;
+        return preg_match(
+            '/^([!@#$%^&*()0-9A-Za-z]*)$/',
+            $this->repeatPassword ?? ''
+        );
     }
 
     /**
@@ -229,7 +226,7 @@ class EditUserForm
     {
         $oldPasswordGiven = $this->password == ''
             && ($this->newPassword != '' || $this->repeatPassword != '')
-            && $this->newPassword === $this->repeatPassword;
+            && $this->newPassword == $this->repeatPassword;
 
         return $oldPasswordGiven;
     }
@@ -252,7 +249,7 @@ class EditUserForm
      */
     public function isPasswordEqual(): bool
     {
-        return $this->newPassword !== $this->repeatPassword;
+        return $this->newPassword != $this->repeatPassword;
     }
 
     /**
@@ -261,7 +258,7 @@ class EditUserForm
     public function isPasswordNotEqual(): bool
     {
         $passwordNotEqual =
-            $this->password != '' && $this->password === $this->newPassword;
+            $this->password != '' && $this->password == $this->newPassword;
 
         return $passwordNotEqual;
     }
@@ -271,7 +268,7 @@ class EditUserForm
      */
     public function isEmailEqual(): bool
     {
-        return $this->newEmail !== $this->repeatEmail;
+        return $this->newEmail != $this->repeatEmail;
     }
 
     /**
@@ -281,7 +278,7 @@ class EditUserForm
      */
     public function isEmailNotEqual(): bool
     {
-        return $this->email != '' && $this->email === $this->newEmail;
+        return $this->email != '' && $this->email == $this->newEmail;
     }
 
     /**
@@ -292,8 +289,8 @@ class EditUserForm
     public function isUrlValid(): bool
     {
         $urlValid = $this->url != ''
-            && substr($this->url, 0, 7) !== 'http://'
-            && substr($this->url, 0, 8) !== 'https://';
+            && substr($this->url, 0, 7) != 'http://'
+            && substr($this->url, 0, 8) != 'https://';
 
         return $urlValid;
     }

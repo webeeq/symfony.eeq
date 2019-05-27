@@ -40,7 +40,7 @@ class SiteRepository extends ServiceEntityRepository
         return $query->getOneOrNullResult();
     }
 
-    public function isRestUserSite(int $id, int $site): ?object
+    public function isApiUserSite(int $id, int $site): ?object
     {
         $query = $this->getEntityManager()->createQuery(
             'SELECT s FROM App:Site s
