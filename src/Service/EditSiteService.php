@@ -45,7 +45,8 @@ class EditSiteService extends Controller
                         'siteData' => $siteData
                     )
                 );
-            } elseif ($form->isValid()) {
+            }
+            if ($form->isValid()) {
                 $siteData = $em->getRepository('App:Site')->setSiteData(
                     $site,
                     $editSiteForm->getVisible(),

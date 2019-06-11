@@ -58,7 +58,8 @@ class AcceptSiteService extends Controller
                         array('activeMenu' => 'admin-account')
                     );
                 }
-            } elseif ($form->isValid()) {
+            }
+            if ($form->isValid()) {
                 $acceptSiteData = $em->getRepository('App:Site')
                     ->setAcceptSiteData(
                         $site,
