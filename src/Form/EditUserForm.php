@@ -257,8 +257,8 @@ class EditUserForm
      */
     public function isPasswordNotEqual(): bool
     {
-        $passwordNotEqual =
-            $this->password != '' && $this->password == $this->newPassword;
+        $passwordNotEqual = $this->password != ''
+            && $this->password == $this->newPassword;
 
         return $passwordNotEqual;
     }

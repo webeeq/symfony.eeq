@@ -9,8 +9,8 @@ class CitySelectHtml
         array $cityList,
         int $selectedCity
     ): string {
-        $citySelect =
-            '<select id="edit_user_form_city" name="edit_user_form[city]">';
+        $citySelect = '<select id="edit_user_form_city"'
+            . ' name="edit_user_form[city]">';
         $citySelect .= '<option value="0">&nbsp;</option>';
         foreach ($cityList as $city) {
             $citySelect .= '<option value="' . $city->getId() . '"'
