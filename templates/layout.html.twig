@@ -24,13 +24,13 @@
                     <li{% if activeMenu == 'main-page' %} class="active"{% endif %}><a href="{{ url('main_page') }}">Główna</a></li>
                     {% if not is_granted("ROLE_USER") %}
                         <li{% if activeMenu == 'add-user' %} class="active"{% endif %}><a href="{{ url('main_page') }}rejestracja">Rejestracja</a></li>
-                        <li{% if activeMenu == 'login-user' %} class="active"{% endif %}><a href="{{ url('main_page') }}logowanie">Logowanie</a></li>
+                        <li{% if activeMenu == 'log-in-user' %} class="active"{% endif %}><a href="{{ url('main_page') }}logowanie">Logowanie</a></li>
                     {% else %}
                         <li{% if activeMenu == 'user-account' %} class="active"{% endif %}><a href="{{ url('main_page') }}konto">Konto</a></li>
                         {% if is_granted("ROLE_ADMIN") %}
                             <li{% if activeMenu == 'admin-account' %} class="active"{% endif %}><a href="{{ url('main_page') }}admin">Admin</a></li>
                         {% endif %}
-                        <li{% if activeMenu == 'logout-user' %} class="active"{% endif %}><a href="{{ url('main_page') }}wylogowanie">Wylogowanie</a></li>
+                        <li{% if activeMenu == 'log-out-user' %} class="active"{% endif %}><a href="{{ url('main_page') }}wylogowanie">Wylogowanie</a></li>
                     {% endif %}
                     <li{% if activeMenu == 'user-regulation' %} class="active"{% endif %}><a href="{{ url('main_page') }}regulamin">Regulamin</a></li>
                     <li{% if activeMenu == 'user-privacy' %} class="active"{% endif %}><a href="{{ url('main_page') }}prywatnosc">Prywatność</a></li>
