@@ -24,7 +24,7 @@ function WECheckCookies() {
 	if (WEReadCookie('cookies_accepted') != 'Y') {
 		var message_container = document.createElement('div');
 		message_container.id = 'cookies-message-container';
-		var html_code = '<div id="cookies-message" style="z-index: 999; position: fixed; left: 0px; bottom: 0px; width: 100%; padding: 10px 0px; border-top: 1px solid #BBBBBB; background: #EAEAEA; text-align: center;">Strona korzysta z plików cookies w celu realizacji usług zgodnie z <a href="/prywatnosc">Polityką Prywatności</a>.<br />Można określić warunki przechowywania i dostępu do cookies w przeglądarce. <a id="accept-cookies-checkbox" name="accept-cookies" href="javascript:WECloseCookiesWindow();" rel="nofollow">Rozumiem</a></div>';
+		var html_code = '<div id="cookies-message" style="z-index: 999; position: fixed; left: 0; bottom: 0; width: 100%; padding: 10px 0; border-top: 1px solid #BBBBBB; background: #EAEAEA;"><p style="width: auto; margin: 0; padding: 0 10px; text-align: center;">Strona korzysta z plików cookies w celu realizacji usług zgodnie z <a href="/prywatnosc">Polityką Prywatności</a>.<br />Można określić warunki przechowywania i dostępu do cookies w przeglądarce. <a id="accept-cookies-checkbox" name="accept-cookies" href="javascript:WECloseCookiesWindow();" rel="nofollow">Rozumiem</a></p></div>';
 		message_container.innerHTML = html_code;
 		document.body.appendChild(message_container);
 	}
