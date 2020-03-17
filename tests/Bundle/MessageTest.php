@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 // tests/Bundle/MessageTest.php
 namespace App\Tests\Bundle;

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 // src/Repository/UserRepository.php
 namespace App\Repository;

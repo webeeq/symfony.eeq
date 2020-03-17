@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 // src/Validator/Api/DeleteSiteValidator.php
 namespace App\Validator\Api;

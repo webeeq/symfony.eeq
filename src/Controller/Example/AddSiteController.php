@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 // src/Controller/Example/AddSiteController.php
 namespace App\Controller\Example;

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 // src/Form/Type/EditSiteFormType.php
 namespace App\Form\Type;

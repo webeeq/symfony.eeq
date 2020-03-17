@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 // src/Controller/Api/DeleteSiteController.php
 namespace App\Controller\Api;

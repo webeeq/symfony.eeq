@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 // src/Bundle/Message.php
 namespace App\Bundle;
@@ -16,7 +18,7 @@ class Message
 
     public function addMessage(string $message): void
     {
-        $this->message .= $message . "\r\n";
+        $this->message .= $message . "\n";
     }
 
     protected function setMessage(string $message): void
@@ -29,7 +31,7 @@ class Message
         $length = strlen($this->message);
 
         if ($length >= 2) {
-            return explode("\r\n", substr($this->message, 0, ($length - 2)));
+            return explode("\n", substr($this->message, 0, ($length - 2)));
         }
 
         return null;
