@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
 class City
 {
     /**
-     * @ORM\Column(type="smallint")
+     * @ORM\Column(type="smallint", options={"unsigned":true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */

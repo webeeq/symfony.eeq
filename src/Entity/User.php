@@ -21,7 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User extends BaseUser
 {
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"unsigned":true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -91,7 +91,7 @@ class User extends BaseUser
     protected $description;
 
     /**
-     * @ORM\Column(name="`show`", type="integer")
+     * @ORM\Column(name="`show`", type="integer", options={"unsigned":true})
      */
     protected $show;
 
