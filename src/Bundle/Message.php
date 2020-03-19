@@ -30,8 +30,8 @@ class Message
     {
         $length = strlen($this->message);
 
-        if ($length >= 2) {
-            return explode("\n", substr($this->message, 0, ($length - 2)));
+        if ($length >= 1) {
+            return explode("\n", substr($this->message, 0, ($length - 1)));
         }
 
         return null;
