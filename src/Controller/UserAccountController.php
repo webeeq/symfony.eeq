@@ -25,6 +25,7 @@ class UserAccountController extends Controller
 
         $userData = $em->getRepository('App:User')
             ->getUserData($id = $this->getUser()->getId());
+
         if (!$userData) {
             return $this->redirectToRoute('login_page');
         }
@@ -56,6 +57,7 @@ class UserAccountController extends Controller
 
         $userData = $em->getRepository('App:User')
             ->getUserData($account);
+
         if (!$userData) {
             return $this->redirectToRoute('login_page');
         }

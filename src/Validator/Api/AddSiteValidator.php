@@ -42,9 +42,10 @@ class AddSiteValidator extends Message
                 'Nazwa strony www może zawierać maksymalnie 180 znaków.'
             );
         }
-        $http = substr($data->url, 0, 7) == 'http://';
-        $https = substr($data->url, 0, 8) == 'https://';
-        if (!$http && !$https) {
+        if (
+            !substr($data->url, 0, 7) == 'http://'
+            && !substr($data->url, 0, 8) == 'https://'
+        ) {
             $this->addMessage(
                 'Url musi rozpoczynać się od znaków: http://'
             );

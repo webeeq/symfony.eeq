@@ -21,8 +21,7 @@ class AcceptSiteController extends Controller
         $config = new Config($this);
         $em = $this->getDoctrine()->getManager();
 
-        $acceptSiteId = $em->getRepository('App:Site')->isAcceptSiteId($site);
-        if (!$acceptSiteId) {
+        if (!$em->getRepository('App:Site')->isAcceptSiteId($site)) {
             return $this->redirectToRoute('login_page');
         }
 

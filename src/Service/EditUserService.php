@@ -49,8 +49,7 @@ class EditUserService extends Controller
                 );
             }
             $key = $em->getRepository('App:User')->generateKey();
-            $userData = $this->setUserData($em, $user, $key, $editUserForm);
-            if ($userData) {
+            if ($this->setUserData($em, $user, $key, $editUserForm)) {
                 $newPassword = $editUserForm->getNewPassword();
                 if ($newPassword != '') {
                     setcookie('login', '', 0, '/');
