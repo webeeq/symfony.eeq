@@ -25,53 +25,53 @@ class Site
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    protected ?int $id;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    protected $active;
+    protected ?bool $active;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    protected $visible;
+    protected ?bool $visible;
 
     /**
      * @ORM\Column(type="string", length=180)
      */
-    protected $name;
+    protected ?string $name;
 
     /**
      * @ORM\Column(type="string", length=180)
      */
-    protected $url;
+    protected ?string $url;
 
     /**
      * @ORM\Column(type="string", length=15)
      */
-    protected $ipAdded;
+    protected ?string $ipAdded;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    protected $dateAdded;
+    protected ?\DateTimeInterface $dateAdded;
 
     /**
      * @ORM\Column(type="string", length=15)
      */
-    protected $ipUpdated;
+    protected ?string $ipUpdated;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    protected $dateUpdated;
+    protected ?\DateTimeInterface $dateUpdated;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="sites")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    protected $user;
+    protected ?User $user;
 
     public function getId(): ?int
     {

@@ -14,8 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ContactFormService extends Controller
 {
-    protected $controller;
-    protected $config;
+    protected ContactFormController $controller;
+    protected Config $config;
 
     public function __construct(
         ContactFormController $controller,

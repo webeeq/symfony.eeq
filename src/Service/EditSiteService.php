@@ -14,8 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class EditSiteService extends Controller
 {
-    protected $controller;
-    protected $config;
+    protected EditSiteController $controller;
+    protected Config $config;
 
     public function __construct(
         EditSiteController $controller,

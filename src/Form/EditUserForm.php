@@ -10,8 +10,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class EditUserForm
 {
-    protected $em;
-    protected $user;
+    protected EntityManager $em;
+    protected int $user;
 
     /**
      * @Assert\NotBlank()
@@ -20,7 +20,7 @@ class EditUserForm
      *     maxMessage="Imię może zawierać maksymalnie {{ limit }} znaków."
      * )
      */
-    protected $name;
+    protected ?string $name = null;
 
     /**
      * @Assert\NotBlank()
@@ -29,7 +29,7 @@ class EditUserForm
      *     maxMessage="Nazwisko może zawierać maksymalnie {{ limit }} znaków."
      * )
      */
-    protected $surname;
+    protected ?string $surname = null;
 
     /**
      * @Assert\Length(
@@ -37,7 +37,7 @@ class EditUserForm
      *     maxMessage="Ulica może zawierać maksymalnie {{ limit }} znaków."
      * )
      */
-    protected $street;
+    protected ?string $street = null;
 
     /**
      * @Assert\Length(
@@ -45,10 +45,10 @@ class EditUserForm
      *     maxMessage="Kod pocztowy może zawierać maksymalnie {{ limit }} znaków."
      * )
      */
-    protected $postcode;
+    protected ?string $postcode = null;
 
-    protected $province;
-    protected $city;
+    protected ?int $province = null;
+    protected ?int $city = null;
 
     /**
      * @Assert\Length(
@@ -56,7 +56,7 @@ class EditUserForm
      *     maxMessage="Telefon może zawierać maksymalnie {{ limit }} znaków."
      * )
      */
-    protected $phone;
+    protected ?string $phone = null;
 
     /**
      * @Assert\NotBlank()
@@ -68,7 +68,7 @@ class EditUserForm
      *     message="E-mail musi mieć format zapisu: nazwisko@domena.pl"
      * )
      */
-    protected $email;
+    protected ?string $email = null;
 
     /**
      * @Assert\Length(
@@ -76,7 +76,7 @@ class EditUserForm
      *     maxMessage="Url strony www może zawierać maksymalnie {{ limit }} znaków."
      * )
      */
-    protected $url;
+    protected ?string $url = null;
 
     /**
      * @Assert\Length(
@@ -84,7 +84,7 @@ class EditUserForm
      *     maxMessage="Opis może zawierać maksymalnie {{ limit }} znaków."
      * )
      */
-    protected $description;
+    protected ?string $description = null;
 
     /**
      * @Assert\Length(
@@ -95,7 +95,7 @@ class EditUserForm
      *     message="Nowy e-mail musi mieć format zapisu: nazwisko@domena.pl"
      * )
      */
-    protected $newEmail;
+    protected ?string $newEmail = null;
 
     /**
      * @Assert\Length(
@@ -106,7 +106,7 @@ class EditUserForm
      *     message="Powtórzony e-mail musi mieć format zapisu: nazwisko@domena.pl"
      * )
      */
-    protected $repeatEmail;
+    protected ?string $repeatEmail = null;
 
     /**
      * @Assert\NotBlank()
@@ -117,7 +117,7 @@ class EditUserForm
      *     maxMessage="Login może zawierać maksymalnie {{ limit }} znaków."
      * )
      */
-    protected $login;
+    protected ?string $login = null;
 
     /**
      * @Assert\Length(
@@ -127,7 +127,7 @@ class EditUserForm
      *     maxMessage="Stare hasło może zawierać maksymalnie {{ limit }} znaki."
      * )
      */
-    protected $password;
+    protected ?string $password = null;
 
     /**
      * @Assert\Length(
@@ -137,7 +137,7 @@ class EditUserForm
      *     maxMessage="Nowe hasło może zawierać maksymalnie {{ limit }} znaki."
      * )
      */
-    protected $newPassword;
+    protected ?string $newPassword = null;
 
     /**
      * @Assert\Length(
@@ -147,7 +147,7 @@ class EditUserForm
      *     maxMessage="Powtórzone hasło może zawierać maksymalnie {{ limit }} znaki."
      * )
      */
-    protected $repeatPassword;
+    protected ?string $repeatPassword = null;
 
     public function __construct(EntityManager $em, int $user)
     {

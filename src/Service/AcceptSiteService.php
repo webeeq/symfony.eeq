@@ -14,8 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AcceptSiteService extends Controller
 {
-    protected $controller;
-    protected $config;
+    protected AcceptSiteController $controller;
+    protected Config $config;
 
     public function __construct(
         AcceptSiteController $controller,

@@ -16,7 +16,7 @@ class EditSiteForm
      *     maxMessage="Nazwa strony www może zawierać maksymalnie {{ limit }} znaków."
      * )
      */
-    protected $name;
+    protected ?string $name = null;
 
     /**
      * @Assert\NotBlank()
@@ -25,10 +25,10 @@ class EditSiteForm
      *     maxMessage="Url strony www może zawierać maksymalnie {{ limit }} znaków."
      * )
      */
-    protected $url;
+    protected ?string $url = null;
 
-    protected $visible;
-    protected $delete;
+    protected ?bool $visible = null;
+    protected ?bool $delete = null;
 
     /**
      * @Assert\IsFalse(message="Url musi rozpoczynać się od znaków: http://")

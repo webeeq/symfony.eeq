@@ -9,13 +9,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class Config extends Controller
 {
-    protected $url;
-    protected $serverName;
-    protected $serverDomain;
-    protected $remoteAddress;
-    protected $dateTimeNow;
-    protected $adminEmail;
-    protected $adminName;
+    protected string $url;
+    protected string $serverName;
+    protected string $serverDomain;
+    protected string $remoteAddress;
+    protected object $dateTimeNow;
+    protected string $adminEmail;
+    protected string $adminName;
 
     public function __construct(?Controller $controller = null)
     {

@@ -7,6 +7,6 @@ namespace App\Bundle;
 
 class Response
 {
-    public $success;
-    public $message;
+    public bool $success;
+    public string $message;
 }

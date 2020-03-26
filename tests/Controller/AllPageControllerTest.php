@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AllPageControllerTest extends WebTestCase
 {
-    private $client;
+    private object $client;
 
     public function setUp(): void
     {

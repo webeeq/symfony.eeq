@@ -10,7 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class UpdateSiteValidator extends Message
 {
-    protected $em;
+    protected EntityManagerInterface $em;
 
     public function __construct(EntityManagerInterface $em)
     {

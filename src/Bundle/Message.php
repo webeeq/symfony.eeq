@@ -7,8 +7,8 @@ namespace App\Bundle;
 
 class Message
 {
-    protected $message;
-    protected $ok;
+    protected string $message;
+    protected bool $ok;
 
     public function __construct()
     {

@@ -12,9 +12,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class UpdateSiteService extends Controller
 {
-    protected $controller;
-    protected $config;
-    protected $validator;
+    protected UpdateSiteController $controller;
+    protected Config $config;
+    protected UpdateSiteValidator $validator;
 
     public function __construct(
         UpdateSiteController $controller,

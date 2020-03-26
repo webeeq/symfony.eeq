@@ -19,7 +19,7 @@ class ContactFormForm
      *     message="E-mail musi mieć format zapisu: nazwisko@domena.pl"
      * )
      */
-    protected $email;
+    protected ?string $email = null;
 
     /**
      * @Assert\NotBlank()
@@ -28,7 +28,7 @@ class ContactFormForm
      *     maxMessage="Temat może zawierać maksymalnie {{ limit }} znaków."
      * )
      */
-    protected $subject;
+    protected ?string $subject = null;
 
     /**
      * @Assert\NotBlank()
@@ -37,7 +37,7 @@ class ContactFormForm
      *     maxMessage="Wiadomość może zawierać maksymalnie {{ limit }} znaków."
      * )
      */
-    protected $message;
+    protected ?string $message = null;
 
     public function setEmail(string $email): void
     {

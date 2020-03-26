@@ -11,8 +11,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ShowSiteService extends Controller
 {
-    protected $controller;
-    protected $config;
+    protected ShowSiteController $controller;
+    protected Config $config;
 
     public function __construct(
         ShowSiteController $controller,

@@ -16,9 +16,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserAccountService extends Controller
 {
-    protected $controller;
-    protected $config;
-    protected $html;
+    protected UserAccountController $controller;
+    protected Config $config;
+    protected PageNavigatorHtml $html;
 
     public function __construct(
         UserAccountController $controller,

@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class MessageTest extends TestCase
 {
-    private $message;
+    private object $message;
 
     public function setUp(): void
     {

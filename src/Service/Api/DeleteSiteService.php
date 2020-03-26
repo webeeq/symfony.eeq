@@ -11,8 +11,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DeleteSiteService extends Controller
 {
-    protected $controller;
-    protected $validator;
+    protected DeleteSiteController $controller;
+    protected DeleteSiteValidator $validator;
 
     public function __construct(
         DeleteSiteController $controller,

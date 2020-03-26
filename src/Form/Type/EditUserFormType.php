@@ -21,8 +21,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EditUserFormType extends AbstractType
 {
-    protected static $em;
-    protected static $province;
+    protected static EntityManagerInterface $em;
+    protected static int $province;
 
     public static function init(
         EntityManagerInterface $em,

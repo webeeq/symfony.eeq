@@ -52,7 +52,7 @@ class User extends BaseUser
      *     maxMessage="Imię może zawierać maksymalnie {{ limit }} znaków."
      * )
      */
-    protected $name;
+    protected ?string $name = null;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -63,85 +63,85 @@ class User extends BaseUser
      *     maxMessage="Nazwisko może zawierać maksymalnie {{ limit }} znaków."
      * )
      */
-    protected $surname;
+    protected ?string $surname = null;
 
     /**
      * @ORM\Column(type="string", length=180)
      */
-    protected $url;
+    protected ?string $url;
 
     /**
      * @ORM\Column(type="string", length=20)
      */
-    protected $phone;
+    protected ?string $phone;
 
     /**
      * @ORM\Column(type="string", length=60)
      */
-    protected $street;
+    protected ?string $street;
 
     /**
      * @ORM\Column(type="string", length=6)
      */
-    protected $postcode;
+    protected ?string $postcode;
 
     /**
      * @ORM\Column(type="text", length=65535)
      */
-    protected $description;
+    protected ?string $description;
 
     /**
      * @ORM\Column(name="`show`", type="integer", options={"unsigned":true})
      */
-    protected $show;
+    protected ?int $show;
 
     /**
      * @ORM\Column(type="string", length=15)
      */
-    protected $ipAdded;
+    protected ?string $ipAdded;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    protected $dateAdded;
+    protected ?\DateTimeInterface $dateAdded;
 
     /**
      * @ORM\Column(type="string", length=15)
      */
-    protected $ipUpdated;
+    protected ?string $ipUpdated;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    protected $dateUpdated;
+    protected ?\DateTimeInterface $dateUpdated;
 
     /**
      * @ORM\ManyToOne(targetEntity="Province", inversedBy="users")
      * @ORM\JoinColumn(name="province_id", referencedColumnName="id")
      */
-    protected $province;
+    protected ?Province $province;
 
     /**
      * @ORM\ManyToOne(targetEntity="City", inversedBy="users")
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
      */
-    protected $city;
+    protected ?City $city;
 
     /**
      * @ORM\OneToMany(targetEntity="Site", mappedBy="user")
      */
-    protected $sites;
+    protected ?object $sites;
 
     /**
      * @Assert\NotBlank()
      * @Assert\IsTrue(message="Musisz zaakceptować regulamin serwisu.")
      */
-    protected $accept = true;
+    protected ?bool $accept = true;
 
     public function __construct()
     {
         parent::__construct();
-        $config = new Config(null);
+        $config = new Config();
         $this->sites = new ArrayCollection();
 
         $this->url = '';

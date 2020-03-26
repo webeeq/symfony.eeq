@@ -15,8 +15,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class EditUserService extends Controller
 {
-    protected $controller;
-    protected $config;
+    protected EditUserController $controller;
+    protected Config $config;
 
     public function __construct(
         EditUserController $controller,

@@ -13,9 +13,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AddSiteService extends Controller
 {
-    protected $controller;
-    protected $config;
-    protected $validator;
+    protected AddSiteController $controller;
+    protected Config $config;
+    protected AddSiteValidator $validator;
 
     public function __construct(
         AddSiteController $controller,

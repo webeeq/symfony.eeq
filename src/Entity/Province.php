@@ -22,27 +22,27 @@ class Province
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    protected ?int $id;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    protected $active;
+    protected ?bool $active;
 
     /**
      * @ORM\Column(type="string", length=30)
      */
-    protected $name;
+    protected ?string $name;
 
     /**
      * @ORM\OneToMany(targetEntity="City", mappedBy="province")
      */
-    protected $cities;
+    protected ?City $cities;
 
     /**
      * @ORM\OneToMany(targetEntity="User", mappedBy="province")
      */
-    protected $users;
+    protected ?User $users;
 
     public function __construct()
     {
