@@ -43,7 +43,7 @@ class City
     /**
      * @ORM\OneToMany(targetEntity="User", mappedBy="city")
      */
-    protected ?User $users;
+    protected ?object $users;
 
     public function __construct()
     {

@@ -72,6 +72,15 @@ class UserRepository extends ServiceEntityRepository
         return $query->getOneOrNullResult();
     }
 
+    public function isUserEmail(string $email): ?object
+    {
+        $query = $this->getEntityManager()->createQuery(
+            'SELECT u FROM App:User u WHERE u.emailCanonical = :emailCanonical'
+        )->setParameter('emailCanonical', strtolower($email));
+
+        return $query->getOneOrNullResult();
+    }
+
     public function setUserData(
         int $id,
         ?int $province,
@@ -97,8 +106,8 @@ class UserRepository extends ServiceEntityRepository
         if ($email != '') {
             $setActive = 'u.enabled = 0, ';
             $setKey = 'u.confirmationToken = :key, ';
-            $setEmail =
-                'u.email = :email, u.emailCanonical = :emailCanonical, ';
+            $setEmail = 'u.email = :email, '
+                . 'u.emailCanonical = :emailCanonical, ';
         } else {
             $setActive = '';
             $setKey = '';

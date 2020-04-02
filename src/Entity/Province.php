@@ -37,12 +37,12 @@ class Province
     /**
      * @ORM\OneToMany(targetEntity="City", mappedBy="province")
      */
-    protected ?City $cities;
+    protected ?object $cities;
 
     /**
      * @ORM\OneToMany(targetEntity="User", mappedBy="province")
      */
-    protected ?User $users;
+    protected ?object $users;
 
     public function __construct()
     {

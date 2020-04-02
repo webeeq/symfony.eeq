@@ -58,16 +58,6 @@ class EditUserForm
      */
     protected ?string $phone = null;
 
-    /**
-     * @Assert\NotBlank()
-     * @Assert\Length(
-     *     max=180,
-     *     maxMessage="E-mail może zawierać maksymalnie {{ limit }} znaków."
-     * )
-     * @Assert\Email(
-     *     message="E-mail musi mieć format zapisu: nazwisko@domena.pl"
-     * )
-     */
     protected ?string $email = null;
 
     /**
@@ -108,15 +98,6 @@ class EditUserForm
      */
     protected ?string $repeatEmail = null;
 
-    /**
-     * @Assert\NotBlank()
-     * @Assert\Length(
-     *     min=2,
-     *     max=50,
-     *     minMessage="Login musi zawierać minimalnie {{ limit }} znaki.",
-     *     maxMessage="Login może zawierać maksymalnie {{ limit }} znaków."
-     * )
-     */
     protected ?string $login = null;
 
     /**
@@ -153,53 +134,6 @@ class EditUserForm
     {
         $this->em = $em;
         $this->user = $user;
-    }
-
-    /**
-     * @Assert\IsTrue(message="Login może składać się tylko z liter i cyfr.")
-     */
-    public function isLoginValid(): int
-    {
-        return preg_match('/^([0-9A-Za-z]*)$/', $this->login);
-    }
-
-    /**
-     * @Assert\IsTrue(
-     *     message="Stare hasło może składać się tylko z liter i cyfr."
-     * )
-     */
-    public function isPasswordValid(): int
-    {
-        return preg_match(
-            '/^([!@#$%^&*()0-9A-Za-z]*)$/',
-            $this->password ?? ''
-        );
-    }
-
-    /**
-     * @Assert\IsTrue(
-     *     message="Nowe hasło może składać się tylko z liter i cyfr."
-     * )
-     */
-    public function isNewPasswordValid(): int
-    {
-        return preg_match(
-            '/^([!@#$%^&*()0-9A-Za-z]*)$/',
-            $this->newPassword ?? ''
-        );
-    }
-
-    /**
-     * @Assert\IsTrue(
-     *     message="Powtórzone hasło może składać się tylko z liter i cyfr."
-     * )
-     */
-    public function isRepeatPasswordValid(): int
-    {
-        return preg_match(
-            '/^([!@#$%^&*()0-9A-Za-z]*)$/',
-            $this->repeatPassword ?? ''
-        );
     }
 
     /**
@@ -281,6 +215,19 @@ class EditUserForm
     public function isEmailNotEqual(): bool
     {
         return $this->email != '' && $this->email == $this->newEmail;
+    }
+
+    /**
+     * @Assert\IsFalse(message="Nowy e-mail jest już użyty.")
+     */
+    public function isUserEmail(): bool
+    {
+        if ($this->newEmail != '') {
+            $userEmail = $this->em->getRepository('App:User')
+                ->isUserEmail($this->newEmail);
+        }
+
+        return $this->newEmail != '' && $userEmail;
     }
 
     /**
