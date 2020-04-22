@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Form/Type/RegisterUserFormType.php
 namespace App\Form\Type;
 
 use Symfony\Component\Form\AbstractType;

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// tests/Bundle/MessageTest.php
 namespace App\Tests\Bundle;
 
 use App\Bundle\Message;

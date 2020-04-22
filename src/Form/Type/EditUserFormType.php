@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Form/Type/EditUserFormType.php
 namespace App\Form\Type;
 
 use Doctrine\ORM\EntityManagerInterface;

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Controller/Ajax/CityListController.php
 namespace App\Controller\Ajax;
 
 use App\Html\CitySelectHtml;

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Bundle/Message.php
 namespace App\Bundle;
 
 class Message

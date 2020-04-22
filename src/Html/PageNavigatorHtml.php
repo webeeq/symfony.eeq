@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Html/PageNavigatorHtml.php
 namespace App\Html;
 
 class PageNavigatorHtml

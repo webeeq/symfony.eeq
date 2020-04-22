@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Controller/Example/UpdateSiteController.php
 namespace App\Controller\Example;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

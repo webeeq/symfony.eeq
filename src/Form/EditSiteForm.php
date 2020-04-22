@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Form/EditSiteForm.php
 namespace App\Form;
 
 use Symfony\Component\Validator\Constraints as Assert;

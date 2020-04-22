@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Service/Api/AddSiteService.php
 namespace App\Service\Api;
 
 use App\Bundle\Config;

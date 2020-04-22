@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Controller/UserHelpController.php
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Validator/Api/DeleteSiteValidator.php
 namespace App\Validator\Api;
 
 use App\Bundle\Message;

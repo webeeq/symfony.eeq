@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Entity/User.php
 namespace App\Entity;
 
 use App\Bundle\Config;

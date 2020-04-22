@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Repository/ProvinceRepository.php
 namespace App\Repository;
 
 use App\Entity\Province;

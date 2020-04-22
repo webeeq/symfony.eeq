@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Controller/UserAccountController.php
 namespace App\Controller;
 
 use App\Bundle\Config;

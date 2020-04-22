@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// tests/Controller/AcceptSiteControllerTest.php
 namespace App\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

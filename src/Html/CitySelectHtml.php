@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Html/CitySelectHtml.php
 namespace App\Html;
 
 class CitySelectHtml

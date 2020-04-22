@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Bundle/Response.php
 namespace App\Bundle;
 
 class Response

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Service/EditSiteService.php
 namespace App\Service;
 
 use App\Bundle\Config;

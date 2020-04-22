@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Entity/City.php
 namespace App\Entity;
 
 use Doctrine\Common\Collections\{ArrayCollection, Collection};

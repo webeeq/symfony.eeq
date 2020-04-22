@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Bundle/Config.php
 namespace App\Bundle;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Controller/ShowSiteController.php
 namespace App\Controller;
 
 use App\Bundle\Config;

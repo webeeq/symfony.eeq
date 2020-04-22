@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Html/MessageHtml.php
 namespace App\Html;
 
 class MessageHtml

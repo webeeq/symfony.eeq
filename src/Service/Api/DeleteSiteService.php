@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-// src/Service/Api/DeleteSiteService.php
 namespace App\Service\Api;
 
 use App\Controller\Api\DeleteSiteController;
