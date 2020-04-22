@@ -24,23 +24,13 @@ class AcceptSiteForm
      *     max=180,
      *     maxMessage="Url strony www może zawierać maksymalnie {{ limit }} znaków."
      * )
+     * @Assert\Url(message="Url strony www nie jest poprawny.")
      */
     protected ?string $url = null;
 
     protected ?bool $active = null;
     protected ?bool $visible = null;
     protected ?bool $delete = null;
-
-    /**
-     * @Assert\IsFalse(message="Url musi rozpoczynać się od znaków: http://")
-     */
-    public function isUrlValid(): bool
-    {
-        $urlValid = substr($this->url, 0, 7) != 'http://'
-            && substr($this->url, 0, 8) != 'https://';
-
-        return $urlValid;
-    }
 
     public function setName(string $name): void
     {

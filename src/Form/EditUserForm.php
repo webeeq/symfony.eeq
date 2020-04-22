@@ -65,6 +65,7 @@ class EditUserForm
      *     max=180,
      *     maxMessage="Url strony www może zawierać maksymalnie {{ limit }} znaków."
      * )
+     * @Assert\Url(message="Url strony www nie jest poprawny.")
      */
     protected ?string $url = null;
 
@@ -160,11 +161,9 @@ class EditUserForm
      */
     public function isOldPasswordGiven(): bool
     {
-        $oldPasswordGiven = $this->password == ''
+        return $this->password == ''
             && ($this->newPassword != '' || $this->repeatPassword != '')
             && $this->newPassword == $this->repeatPassword;
-
-        return $oldPasswordGiven;
     }
 
     /**
@@ -172,12 +171,10 @@ class EditUserForm
      *     message="Nowe hasło lub powtórzone hasło nie zostało podane."
      * )
      */
-    public function isNewOrRepeatPasswordGiven(): bool
+    public function isNewAndRepeatPasswordGiven(): bool
     {
-        $newOrRepeatPasswordGiven = $this->password != ''
+        return $this->password != ''
             && ($this->newPassword == '' || $this->repeatPassword == '');
-
-        return $newOrRepeatPasswordGiven;
     }
 
     /**
@@ -193,10 +190,7 @@ class EditUserForm
      */
     public function isPasswordNotEqual(): bool
     {
-        $passwordNotEqual = $this->password != ''
-            && $this->password == $this->newPassword;
-
-        return $passwordNotEqual;
+        return $this->password != '' && $this->password == $this->newPassword;
     }
 
     /**
@@ -220,7 +214,7 @@ class EditUserForm
     /**
      * @Assert\IsFalse(message="Nowy e-mail jest już użyty.")
      */
-    public function isUserEmail(): bool
+    public function isNotUserEmail(): bool
     {
         if ($this->newEmail != '') {
             $userEmail = $this->em->getRepository('App:User')
@@ -228,20 +222,6 @@ class EditUserForm
         }
 
         return $this->newEmail != '' && $userEmail;
-    }
-
-    /**
-     * @Assert\IsFalse(
-     *     message="Strona www musi rozpoczynać się od znaków: http://"
-     * )
-     */
-    public function isUrlValid(): bool
-    {
-        $urlValid = $this->url != ''
-            && substr($this->url, 0, 7) != 'http://'
-            && substr($this->url, 0, 8) != 'https://';
-
-        return $urlValid;
     }
 
     public function setName(string $name): void
