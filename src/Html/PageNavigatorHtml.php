@@ -33,7 +33,7 @@ class PageNavigatorHtml
             $pageNavigator .= ($level > $minLevel) ? '<a href="' . $url
                 . $previousLevel . '">&nbsp;&laquo&nbsp;</a>' : '';
             for ($i = $fromLevel; $i <= $toLevel; $i++) {
-                $pageNavigator .= ($i != $level) ? '<a href="' . $url
+                $pageNavigator .= ($i !== $level) ? '<a href="' . $url
                     . $i . '">&nbsp;' . $i . '&nbsp;</a>' : '[' . $i . ']';
             }
             $pageNavigator .= ($level < $maxLevel) ? '<a href="' . $url

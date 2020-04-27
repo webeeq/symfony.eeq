@@ -50,7 +50,7 @@ class UserAccountController extends Controller
         $html = new PageNavigatorHtml();
         $em = $this->getDoctrine()->getManager();
 
-        if ($account != $this->getUser()->getId()) {
+        if ($account !== $this->getUser()->getId()) {
             return $this->redirectToRoute('login_page');
         }
 

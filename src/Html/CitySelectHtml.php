@@ -15,7 +15,7 @@ class CitySelectHtml
         $citySelect .= '<option value="0">&nbsp;</option>';
         foreach ($cityList as $city) {
             $citySelect .= '<option value="' . $city->getId() . '"'
-                . (($city->getId() == $selectedCity) ? ' selected="selected"'
+                . (($city->getId() === $selectedCity) ? ' selected="selected"'
                 : '') . '>' . $city->getName() . '</option>';
         }
         $citySelect .= '</select>';

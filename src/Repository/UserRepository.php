@@ -20,7 +20,7 @@ class UserRepository extends ServiceEntityRepository
         $key = '';
 
         for ($i = 0; $i < 43; $i++) {
-            if (rand(0, 2) != 0) {
+            if (rand(0, 2) !== 0) {
                 $j = rand(0, 51);
                 $key .= substr(
                     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
@@ -97,12 +97,12 @@ class UserRepository extends ServiceEntityRepository
         string $ip,
         object $date
     ): ?int {
-        if ($password != '') {
+        if ($password !== '') {
             $setPassword = 'u.password = :password, ';
         } else {
             $setPassword = '';
         }
-        if ($email != '') {
+        if ($email !== '') {
             $setActive = 'u.enabled = 0, ';
             $setKey = 'u.confirmationToken = :key, ';
             $setEmail = 'u.email = :email, '

@@ -143,7 +143,7 @@ class EditUserForm
      */
     public function isOldPasswordValid(): bool
     {
-        if ($this->password != '') {
+        if (!empty($this->password)) {
             $idPassword = $this->em->getRepository('App:User')
                 ->getIdPassword($this->user);
             $passwordVerify = password_verify(
@@ -152,7 +152,7 @@ class EditUserForm
             );
         }
 
-        return $this->password != '' && !$passwordVerify;
+        return !empty($this->password) && !$passwordVerify;
     }
 
     /**
@@ -160,9 +160,9 @@ class EditUserForm
      */
     public function isOldPasswordGiven(): bool
     {
-        return $this->password == ''
-            && ($this->newPassword != '' || $this->repeatPassword != '')
-            && $this->newPassword == $this->repeatPassword;
+        return empty($this->password)
+            && (!empty($this->newPassword) || !empty($this->repeatPassword))
+            && $this->newPassword === $this->repeatPassword;
     }
 
     /**
@@ -172,8 +172,8 @@ class EditUserForm
      */
     public function isNewAndRepeatPasswordGiven(): bool
     {
-        return $this->password != ''
-            && ($this->newPassword == '' || $this->repeatPassword == '');
+        return !empty($this->password)
+            && (empty($this->newPassword) || empty($this->repeatPassword));
     }
 
     /**
@@ -181,7 +181,7 @@ class EditUserForm
      */
     public function isPasswordEqual(): bool
     {
-        return $this->newPassword != $this->repeatPassword;
+        return $this->newPassword !== $this->repeatPassword;
     }
 
     /**
@@ -189,7 +189,8 @@ class EditUserForm
      */
     public function isPasswordNotEqual(): bool
     {
-        return $this->password != '' && $this->password == $this->newPassword;
+        return !empty($this->password)
+            && $this->password === $this->newPassword;
     }
 
     /**
@@ -197,7 +198,7 @@ class EditUserForm
      */
     public function isEmailEqual(): bool
     {
-        return $this->newEmail != $this->repeatEmail;
+        return $this->newEmail !== $this->repeatEmail;
     }
 
     /**
@@ -207,7 +208,7 @@ class EditUserForm
      */
     public function isEmailNotEqual(): bool
     {
-        return $this->email != '' && $this->email == $this->newEmail;
+        return !empty($this->email) && $this->email === $this->newEmail;
     }
 
     /**
@@ -215,12 +216,12 @@ class EditUserForm
      */
     public function isNotUserEmail(): bool
     {
-        if ($this->newEmail != '') {
+        if (!empty($this->newEmail)) {
             $userEmail = $this->em->getRepository('App:User')
                 ->isUserEmail($this->newEmail);
         }
 
-        return $this->newEmail != '' && $userEmail;
+        return !empty($this->newEmail) && $userEmail;
     }
 
     public function setName(string $name): void

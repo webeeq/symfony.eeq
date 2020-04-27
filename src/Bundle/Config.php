@@ -18,7 +18,7 @@ class Config extends Controller
 
     public function __construct(?Controller $controller = null)
     {
-        $this->url = 'http' . (($_SERVER['SERVER_PORT'] == 443) ? 's' : '')
+        $this->url = 'http' . (($_SERVER['SERVER_PORT'] === 443) ? 's' : '')
             . '://' . $_SERVER['HTTP_HOST'];
         $this->serverName = $_SERVER['SERVER_NAME'];
         $this->serverDomain = str_replace('www.', '', $this->serverName);

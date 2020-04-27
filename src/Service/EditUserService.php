@@ -41,7 +41,7 @@ class EditUserService extends Controller
         );
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($userData->getUsername() != $editUserForm->getLogin()) {
+            if ($userData->getUsername() !== $editUserForm->getLogin()) {
                 return array(
                     'edit-user/record-stopped-info.html.twig',
                     array('activeMenu' => 'user-account')
@@ -50,11 +50,11 @@ class EditUserService extends Controller
             $key = $em->getRepository('App:User')->generateKey();
             if ($this->setUserData($em, $user, $key, $editUserForm)) {
                 $newPassword = $editUserForm->getNewPassword();
-                if ($newPassword != '') {
+                if (!empty($newPassword)) {
                     setcookie('login', '', 0, '/');
                 }
                 $newEmail = $editUserForm->getNewEmail();
-                if ($newEmail != '') {
+                if (!empty($newEmail)) {
                     $session->invalidate();
                     setcookie('login', '', 0, '/');
                     $activationEmail = $this->sendActivationEmail(

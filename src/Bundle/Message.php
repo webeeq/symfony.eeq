@@ -43,12 +43,12 @@ class Message
 
     public function isMessage(): bool
     {
-        return ($this->message != '') ? true : false;
+        return ($this->message !== '') ? true : false;
     }
 
     public function isValid(): bool
     {
-        return ($this->message == '') ? true : false;
+        return ($this->message === '') ? true : false;
     }
 
     public function setOk(bool $ok): void
