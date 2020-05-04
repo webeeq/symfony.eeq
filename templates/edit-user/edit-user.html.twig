@@ -43,7 +43,7 @@
             </tr>
             <tr>
                 <td>{{ form_label(form.city) }}</td>
-                <td id="select1">{{ form_widget(form.city) }}</td>
+                <td id="select">{{ form_widget(form.city) }}</td>
             </tr>
             <tr>
                 <td>{{ form_label(form.phone) }}</td>
@@ -139,15 +139,15 @@
 
 {% block ajax %}
     <script type="text/javascript">
-        function ajax(value) {
-            $.post('{{ path('ajax_city_list') }}', {inData: value, inData2: {{ selectedCity }}}, function(response) {
-                if (response.code == 100 && response.success) {
-                    $('#select1').html(response.outData);
-                }
-            }, 'json');
-        }
-
         $(document).ready(function() {
+            function ajax(value) {
+                $.post('{{ path('ajax_city_list') }}', {inData: value, inData2: {{ selectedCity }}}, function(response) {
+                    if (response.code == 100 && response.success) {
+                        $('#select').html(response.outData);
+                    }
+                }, 'json');
+            }
+
             $('#edit_user_form_province').change(function() {
                 ajax(this.value);
             });
