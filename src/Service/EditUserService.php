@@ -45,12 +45,24 @@ class EditUserService extends Controller
             if ($this->setUserData($em, $user, $key, $editUserForm)) {
                 $newPassword = $editUserForm->getNewPassword();
                 if (!empty($newPassword)) {
-                    setcookie('login', '', 0, '/');
+                    setcookie(
+                        'login',
+                        '',
+                        0,
+                        '/',
+                        $this->config->getServerName()
+                    );
                 }
                 $newEmail = $editUserForm->getNewEmail();
                 if (!empty($newEmail)) {
                     $session->invalidate();
-                    setcookie('login', '', 0, '/');
+                    setcookie(
+                        'login',
+                        '',
+                        0,
+                        '/',
+                        $this->config->getServerName()
+                    );
                     $activationEmail = $this->sendActivationEmail(
                         $editUserForm,
                         $key
