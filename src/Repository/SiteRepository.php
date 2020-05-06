@@ -173,13 +173,8 @@ class SiteRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function pageNavigator(
-        object $config,
-        object $html,
-        int $id,
-        int $level,
-        int $listLimit
-    ): string {
+    public function getSiteCount(int $id): int
+    {
         $query = $this->getEntityManager()->createQuery(
             'SELECT COUNT(s.id) AS total FROM App:Site s
             INNER JOIN App:User u WITH s.user = u.id
@@ -191,22 +186,11 @@ class SiteRepository extends ServiceEntityRepository
             $count = 0;
         }
 
-        return $html->preparePageNavigator(
-            $config->getUrl() . '/konto,' . $id . ',strona,',
-            $level,
-            $listLimit,
-            $count,
-            3
-        );
+        return $count;
     }
 
-    public function adminPageNavigator(
-        object $config,
-        object $html,
-        int $id,
-        int $level,
-        int $listLimit
-    ): string {
+    public function getAdminSiteCount(): int
+    {
         $query = $this->getEntityManager()->createQuery(
             'SELECT COUNT(s.id) AS total FROM App:Site s
             INNER JOIN App:User u WITH s.user = u.id
@@ -218,13 +202,7 @@ class SiteRepository extends ServiceEntityRepository
             $count = 0;
         }
 
-        return $html->preparePageNavigator(
-            $config->getUrl() . '/admin,' . $id . ',strona,',
-            $level,
-            $listLimit,
-            $count,
-            3
-        );
+        return $count;
     }
 
     public function getSiteRandomUrl(int $id, int $show = 1): ?object

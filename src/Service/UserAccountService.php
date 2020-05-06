@@ -75,12 +75,13 @@ class UserAccountService extends Controller
             $level,
             $listLimit = 10
         );
-        $pageNavigator = $em->getRepository('App:Site')->pageNavigator(
-            $this->config,
-            $this->html,
-            $id,
+        $siteCount = $em->getRepository('App:Site')->getSiteCount($id);
+        $pageNavigator = $this->html->preparePageNavigator(
+            $this->config->getUrl() . '/konto,' . $id . ',strona,',
             $level,
-            $listLimit
+            $listLimit,
+            $siteCount,
+            3
         );
 
         return array('user-account/user-account.html.twig', array(

@@ -28,8 +28,15 @@ class AdminAccountController extends Controller
 
         $adminSiteList = $em->getRepository('App:Site')
             ->getAdminSiteList(1, $listLimit = 10);
-        $adminPageNavigator = $em->getRepository('App:Site')
-            ->adminPageNavigator($config, $html, $id, 1, $listLimit);
+        $adminSiteCount = $em->getRepository('App:Site')
+            ->getAdminSiteCount();
+        $adminPageNavigator = $html->preparePageNavigator(
+            $config->getUrl() . '/admin,' . $id . ',strona,',
+            1,
+            $listLimit,
+            $adminSiteCount,
+            3
+        );
 
         return $this->render('admin-account/admin-account.html.twig', array(
             'activeMenu' => 'admin-account',
@@ -64,14 +71,15 @@ class AdminAccountController extends Controller
 
         $adminSiteList = $em->getRepository('App:Site')
             ->getAdminSiteList($level, $listLimit = 10);
-        $adminPageNavigator = $em->getRepository('App:Site')
-            ->adminPageNavigator(
-                $config,
-                $html,
-                $account,
-                $level,
-                $listLimit
-            );
+        $adminSiteCount = $em->getRepository('App:Site')
+            ->getAdminSiteCount();
+        $adminPageNavigator = $html->preparePageNavigator(
+            $config->getUrl() . '/admin,' . $account . ',strona,',
+            $level,
+            $listLimit,
+            $adminSiteCount,
+            3
+        );
 
         return $this->render('admin-account/admin-account.html.twig', array(
             'activeMenu' => 'admin-account',
