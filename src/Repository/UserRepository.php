@@ -15,31 +15,6 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    public function generateKey(): string
-    {
-        $key = '';
-
-        for ($i = 0; $i < 43; $i++) {
-            if (rand(0, 2) !== 0) {
-                $j = rand(0, 51);
-                $key .= substr(
-                    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
-                    $j,
-                    1
-                );
-            } else {
-                $j = rand(0, 9);
-                $key .= substr(
-                    '1234567890',
-                    $j,
-                    1
-                );
-            }
-        }
-
-        return $key;
-    }
-
     public function isUserId(int $id, int $user): ?object
     {
         $query = $this->getEntityManager()->createQuery(

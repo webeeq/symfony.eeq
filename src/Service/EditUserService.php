@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Bundle\Config;
+use App\Bundle\{Config, Key};
 use App\Controller\EditUserController;
 use App\Form\EditUserForm;
 use App\Form\Type\EditUserFormType;
@@ -16,13 +16,16 @@ class EditUserService extends Controller
 {
     protected EditUserController $controller;
     protected Config $config;
+    protected Key $key;
 
     public function __construct(
         EditUserController $controller,
-        Config $config
+        Config $config,
+        Key $key
     ) {
         $this->controller = $controller;
         $this->config = $config;
+        $this->key = $key;
     }
 
     public function formAction(Request $request, int $user): array
@@ -41,7 +44,7 @@ class EditUserService extends Controller
         );
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $key = $em->getRepository('App:User')->generateKey();
+            $key = $this->key->generateKey();
             if ($this->setUserData($em, $user, $key, $editUserForm)) {
                 $newPassword = $editUserForm->getNewPassword();
                 if (!empty($newPassword)) {

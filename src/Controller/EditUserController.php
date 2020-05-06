@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Bundle\Config;
+use App\Bundle\{Config, Key};
 use App\Service\EditUserService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,6 +18,7 @@ class EditUserController extends Controller
     public function editUserAction(Request $request, int $user): object
     {
         $config = new Config($this);
+        $key = new Key();
         $em = $this->getDoctrine()->getManager();
 
         $userId = $em->getRepository('App:User')
@@ -26,7 +27,7 @@ class EditUserController extends Controller
             return $this->redirectToRoute('login_page');
         }
 
-        $editUserService = new EditUserService($this, $config);
+        $editUserService = new EditUserService($this, $config, $key);
         $array = $editUserService->formAction($request, $user);
 
         return $this->render($array[0], $array[1]);
