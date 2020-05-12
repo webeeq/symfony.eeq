@@ -72,7 +72,7 @@ class Site
      */
     protected ?User $user;
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return (int) $this->id;
     }

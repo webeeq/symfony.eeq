@@ -49,7 +49,7 @@ class Province
         $this->users = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return (int) $this->id;
     }

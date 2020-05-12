@@ -160,7 +160,7 @@ class User extends BaseUser
         $this->roles = array('ROLE_USER');
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return (int) $this->id;
     }
@@ -240,7 +240,7 @@ class User extends BaseUser
         $this->show = $show;
     }
 
-    public function getShow(): ?int
+    public function getShow(): int
     {
         return (int) $this->show;
     }
