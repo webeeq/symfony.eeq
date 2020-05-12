@@ -5,7 +5,7 @@ jQuery(document).ready(function ($) {
     }];
 
     var options = {
-        $StartIndex: <?php echo (!$_GET['ss']) ? 0 : $_GET['ss']; ?>,
+        $StartIndex: <?= (int) $_GET['ss'] ?>,
         $FillMode: 0,
         $AutoPlay: true,
         $AutoPlayInterval: 5000,
