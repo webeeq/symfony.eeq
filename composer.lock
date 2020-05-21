@@ -6513,12 +6513,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webeeq/sieciq.git",
-                "reference": "cbe8c855febddc28a770d538026f5ef1750831c6"
+                "reference": "b76091878a0a3464d1dc277a802db7a7ba53c587"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webeeq/sieciq/zipball/cbe8c855febddc28a770d538026f5ef1750831c6",
-                "reference": "cbe8c855febddc28a770d538026f5ef1750831c6",
+                "url": "https://api.github.com/repos/webeeq/sieciq/zipball/b76091878a0a3464d1dc277a802db7a7ba53c587",
+                "reference": "b76091878a0a3464d1dc277a802db7a7ba53c587",
                 "shasum": ""
             },
             "require": {
@@ -6536,7 +6536,7 @@
                 "proprietary"
             ],
             "description": "A library for SIECIQ website's REST API.",
-            "time": "2020-03-26T12:07:22+00:00"
+            "time": "2020-05-21T08:37:54+00:00"
         },
         {
             "name": "webimpress/safe-writer",
