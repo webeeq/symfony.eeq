@@ -15,23 +15,23 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    public function isUserId(int $id, int $user): ?object
+    public function isUserId(int $user, int $user2): ?object
     {
         $query = $this->getEntityManager()->createQuery(
             'SELECT u FROM App:User u
-            WHERE u.enabled = 1 AND u.id = :id AND u.id = :user'
+            WHERE u.enabled = 1 AND u.id = :user AND u.id = :user2'
         )
-            ->setParameter('id', $id)
-            ->setParameter('user', $user);
+            ->setParameter('user', $user)
+            ->setParameter('user2', $user2);
 
         return $query->getOneOrNullResult();
     }
 
-    public function getIdPassword(int $id): ?object
+    public function getIdPassword(int $user): ?object
     {
         $query = $this->getEntityManager()->createQuery(
-            'SELECT u FROM App:User u WHERE u.id = :id'
-        )->setParameter('id', $id);
+            'SELECT u FROM App:User u WHERE u.id = :user'
+        )->setParameter('user', $user);
 
         return $query->getOneOrNullResult();
     }
@@ -56,7 +56,7 @@ class UserRepository extends ServiceEntityRepository
     }
 
     public function setUserData(
-        int $id,
+        int $user,
         ?int $province,
         ?int $city,
         string $name,
@@ -96,11 +96,11 @@ class UserRepository extends ServiceEntityRepository
                 u.phone = :phone, u.street = :street,
                 u.postcode = :postcode, u.description = :description,
                 u.ipUpdated = :ip, u.dateUpdated = :date
-            WHERE u.id = :id
+            WHERE u.id = :user
                 AND :password = :password AND :key = :key AND :email = :email
                 AND :emailCanonical = :emailCanonical'
         )
-            ->setParameter('id', $id)
+            ->setParameter('user', $user)
             ->setParameter('province', $province)
             ->setParameter('city', $city)
             ->setParameter('name', $name)
@@ -123,17 +123,17 @@ class UserRepository extends ServiceEntityRepository
         return $query->getOneOrNullResult();
     }
 
-    public function getUserData(int $id): ?object
+    public function getUserData(int $user): ?object
     {
         $query = $this->getEntityManager()->createQuery(
             'SELECT u FROM App:User u
-            WHERE u.enabled = 1 AND u.id = :id'
-        )->setParameter('id', $id);
+            WHERE u.enabled = 1 AND u.id = :user'
+        )->setParameter('user', $user);
 
         return $query->getOneOrNullResult();
     }
 
-    public function isUserMaxShow(int $id, int $show = 0): ?object
+    public function isUserMaxShow(int $user, int $show = 0): ?object
     {
         $query = $this->getEntityManager()->createQuery(
             'SELECT u FROM App:User u
@@ -142,27 +142,27 @@ class UserRepository extends ServiceEntityRepository
                 INNER JOIN App:User u2 WITH s.user = u2.id
                 WHERE s.active = 1 AND s.visible = 1 AND u2.enabled = 1
                     AND u2.show >= :show AND u2.id != :id
-            ) AND u.id = :id'
+            ) AND u.id = :user'
         )
-            ->setParameter('id', $id)
+            ->setParameter('user', $user)
             ->setParameter('show', $show);
 
         return $query->getOneOrNullResult();
     }
 
-    public function setUserShow(int $id, object $user, int $show = 1): bool
+    public function setUserShow(int $user, object $user2, int $show = 1): bool
     {
         $em = $this->getEntityManager();
         $em->getConnection()->beginTransaction();
 
-        $query1 = $em->createQuery(
+        $query = $em->createQuery(
             'UPDATE App:User u
             SET u.show = u.show + 1
-            WHERE u.id = :id'
-        )->setParameter('id', $id);
-        $result1 = $query1->getOneOrNullResult();
+            WHERE u.id = :user'
+        )->setParameter('user', $user);
+        $result = $query->getOneOrNullResult();
 
-        if ($result1 && ($user->getShow() < 1 || $show < 1)) {
+        if ($result && ($user2->getShow() < 1 || $show < 1)) {
             $em->getConnection()->commit();
 
             return true;
@@ -171,13 +171,13 @@ class UserRepository extends ServiceEntityRepository
         $query2 = $em->createQuery(
             'UPDATE App:User u
             SET u.show = u.show - :show
-            WHERE u.id = :id'
+            WHERE u.id = :user2'
         )
-            ->setParameter('id', $user->getId())
+            ->setParameter('user2', $user2->getId())
             ->setParameter('show', $show);
         $result2 = $query2->getOneOrNullResult();
 
-        if ($result1 && $result2) {
+        if ($result && $result2) {
             $em->getConnection()->commit();
 
             return true;

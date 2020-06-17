@@ -15,57 +15,57 @@ class SiteRepository extends ServiceEntityRepository
         parent::__construct($registry, Site::class);
     }
 
-    public function isAcceptSiteId(int $id): ?object
+    public function isAcceptSiteId(int $site): ?object
     {
         $query = $this->getEntityManager()->createQuery(
             'SELECT s FROM App:Site s
             INNER JOIN App:User u WITH s.user = u.id
             WHERE u.enabled = 1 AND s.active = 0
-                AND s.id = :id'
-        )->setParameter('id', $id);
+                AND s.id = :site'
+        )->setParameter('site', $site);
 
         return $query->getOneOrNullResult();
     }
 
-    public function isUserSiteId(int $id, int $site): ?object
+    public function isUserSiteId(int $user, int $site): ?object
     {
         $query = $this->getEntityManager()->createQuery(
             'SELECT s FROM App:Site s
             INNER JOIN App:User u WITH s.user = u.id
             WHERE u.enabled = 1 AND s.active = 1
-                AND s.user = :id AND s.id = :site'
+                AND s.user = :user AND s.id = :site'
         )
-            ->setParameter('id', $id)
+            ->setParameter('user', $user)
             ->setParameter('site', $site);
 
         return $query->getOneOrNullResult();
     }
 
-    public function isApiUserSite(int $id, int $site): ?object
+    public function isApiUserSite(int $user, int $site): ?object
     {
         $query = $this->getEntityManager()->createQuery(
             'SELECT s FROM App:Site s
             INNER JOIN App:User u WITH s.user = u.id
-            WHERE u.enabled = 1 AND s.user = :id
+            WHERE u.enabled = 1 AND s.user = :user
                 AND s.id = :site'
         )
-            ->setParameter('id', $id)
+            ->setParameter('user', $user)
             ->setParameter('site', $site);
 
         return $query->getOneOrNullResult();
     }
 
-    public function deleteSiteData(int $id): ?int
+    public function deleteSiteData(int $site): ?int
     {
         $query = $this->getEntityManager()->createQuery(
-            'DELETE FROM App:Site s WHERE s.id = :id'
-        )->setParameter('id', $id);
+            'DELETE FROM App:Site s WHERE s.id = :site'
+        )->setParameter('site', $site);
 
         return $query->getOneOrNullResult();
     }
 
     public function setSiteData(
-        int $id,
+        int $site,
         bool $visible,
         string $name,
         string $ip,
@@ -75,9 +75,9 @@ class SiteRepository extends ServiceEntityRepository
             'UPDATE App:Site s
             SET s.visible = :visible, s.name = :name,
                 s.ipUpdated = :ip, s.dateUpdated = :date
-            WHERE s.id = :id'
+            WHERE s.id = :site'
         )
-            ->setParameter('id', $id)
+            ->setParameter('site', $site)
             ->setParameter('visible', $visible)
             ->setParameter('name', $name)
             ->setParameter('ip', $ip)
@@ -87,7 +87,7 @@ class SiteRepository extends ServiceEntityRepository
     }
 
     public function setAcceptSiteData(
-        int $id,
+        int $site,
         bool $active,
         bool $visible,
         string $name,
@@ -100,9 +100,9 @@ class SiteRepository extends ServiceEntityRepository
             SET s.active = :active, s.visible = :visible,
                 s.name = :name, s.url = :url,
                 s.ipUpdated = :ip, s.dateUpdated = :date
-            WHERE s.id = :id'
+            WHERE s.id = :site'
         )
-            ->setParameter('id', $id)
+            ->setParameter('site', $site)
             ->setParameter('active', $active)
             ->setParameter('visible', $visible)
             ->setParameter('name', $name)
@@ -113,46 +113,46 @@ class SiteRepository extends ServiceEntityRepository
         return $query->getOneOrNullResult();
     }
 
-    public function getSiteData(int $id): ?object
+    public function getSiteData(int $site): ?object
     {
         $query = $this->getEntityManager()->createQuery(
-            'SELECT s FROM App:Site s WHERE s.id = :id'
-        )->setParameter('id', $id);
+            'SELECT s FROM App:Site s WHERE s.id = :site'
+        )->setParameter('site', $site);
 
         return $query->getOneOrNullResult();
     }
 
-    public function getAcceptSiteData(int $id): ?object
+    public function getAcceptSiteData(int $site): ?object
     {
         $query = $this->getEntityManager()->createQuery(
             'SELECT s FROM App:Site s
             INNER JOIN App:User u WITH s.user = u.id
-            WHERE s.id = :id'
-        )->setParameter('id', $id);
+            WHERE s.id = :site'
+        )->setParameter('site', $site);
 
         return $query->getOneOrNullResult();
     }
 
-    public function getAcceptUserData(int $id): ?object
+    public function getAcceptUserData(int $site): ?object
     {
         $query = $this->getEntityManager()->createQuery(
             'SELECT u FROM App:Site s
             INNER JOIN App:User u WITH s.user = u.id
-            WHERE s.id = :id'
-        )->setParameter('id', $id);
+            WHERE s.id = :site'
+        )->setParameter('site', $site);
 
         return $query->getOneOrNullResult();
     }
 
-    public function getSiteList(int $id, int $level, int $listLimit): array
+    public function getSiteList(int $user, int $level, int $listLimit): array
     {
         $query = $this->getEntityManager()->createQuery(
             'SELECT s FROM App:Site s
             INNER JOIN App:User u WITH s.user = u.id
-            WHERE s.active = 1 AND u.enabled = 1 AND s.user = :id
+            WHERE s.active = 1 AND u.enabled = 1 AND s.user = :user
             ORDER BY s.dateAdded DESC'
         )
-            ->setParameter('id', $id)
+            ->setParameter('user', $user)
             ->setFirstResult(($level - 1) * $listLimit)
             ->setMaxResults($listLimit);
 
@@ -173,13 +173,13 @@ class SiteRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function getSiteCount(int $id): int
+    public function getSiteCount(int $user): int
     {
         $query = $this->getEntityManager()->createQuery(
             'SELECT COUNT(s.id) AS total FROM App:Site s
             INNER JOIN App:User u WITH s.user = u.id
-            WHERE s.active = 1 AND u.enabled = 1 AND s.user = :id'
-        )->setParameter('id', $id);
+            WHERE s.active = 1 AND u.enabled = 1 AND s.user = :user'
+        )->setParameter('user', $user);
         try {
             $count = (int) $query->getSingleScalarResult();
         } catch (\Doctrine\ORM\NoResultException $e) {
@@ -205,16 +205,16 @@ class SiteRepository extends ServiceEntityRepository
         return $count;
     }
 
-    public function getSiteRandomUrl(int $id, int $show = 1): ?object
+    public function getSiteRandomUrl(int $user, int $show = 1): ?object
     {
         $query = $this->getEntityManager()->createQuery(
             'SELECT s FROM App:Site s
             INNER JOIN App:User u WITH s.user = u.id
             WHERE s.active = 1 AND s.visible = 1 AND u.enabled = 1
-                AND u.show >= :show AND u.id != :id
+                AND u.show >= :show AND u.id != :user
             ORDER BY RAND()'
         )
-            ->setParameter('id', $id)
+            ->setParameter('user', $user)
             ->setParameter('show', $show)
             ->setMaxResults(1);
 
