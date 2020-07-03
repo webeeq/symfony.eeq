@@ -141,7 +141,7 @@ class UserRepository extends ServiceEntityRepository
                 SELECT COUNT(s.id) FROM App:Site s
                 INNER JOIN App:User u2 WITH s.user = u2.id
                 WHERE s.active = 1 AND s.visible = 1 AND u2.enabled = 1
-                    AND u2.show >= :show AND u2.id != :id
+                    AND u2.show >= :show AND u2.id != :user
             ) AND u.id = :user'
         )
             ->setParameter('user', $user)
