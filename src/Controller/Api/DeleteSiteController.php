@@ -37,8 +37,8 @@ class DeleteSiteController extends Controller
         );
 
         $response = new Response();
-        $response->message = $message->getStrMessage();
         $response->success = $message->getOk();
+        $response->message = $message->getStrMessage();
 
         return new JsonResponse($response);
     }
