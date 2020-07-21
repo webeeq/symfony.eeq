@@ -14,16 +14,16 @@ use Symfony\Component\HttpFoundation\Request;
 
 class EditUserService extends Controller
 {
-    protected EditUserController $controller;
+    protected EditUserController $editUserController;
     protected Config $config;
     protected Key $key;
 
     public function __construct(
-        EditUserController $controller,
+        EditUserController $editUserController,
         Config $config,
         Key $key
     ) {
-        $this->controller = $controller;
+        $this->editUserController = $editUserController;
         $this->config = $config;
         $this->key = $key;
     }
@@ -31,14 +31,14 @@ class EditUserService extends Controller
     public function formAction(Request $request, int $user): array
     {
         $session = $request->getSession();
-        $em = $this->controller->getDoctrine()->getManager();
+        $em = $this->editUserController->getDoctrine()->getManager();
 
         $userData = $em->getRepository('App:User')->getUserData($user);
         $province = $this->getProvince($request, $em, $user, $userData);
 
         $editUserForm = new EditUserForm($em, $user);
         EditUserFormType::init($em, $province);
-        $form = $this->controller->createForm(
+        $form = $this->editUserController->createForm(
             EditUserFormType::class,
             $editUserForm
         );
@@ -89,7 +89,7 @@ class EditUserService extends Controller
             }
         } else {
             $this->setEditUserForm($userData, $editUserForm);
-            $form = $this->controller->createForm(
+            $form = $this->editUserController->createForm(
                 EditUserFormType::class,
                 $editUserForm
             );
@@ -111,7 +111,7 @@ class EditUserService extends Controller
     ): int {
         $editUserForm = new EditUserForm($em, $user);
         EditUserFormType::init($em, 0);
-        $form = $this->controller->createForm(
+        $form = $this->editUserController->createForm(
             EditUserFormType::class,
             $editUserForm
         );
@@ -188,7 +188,7 @@ class EditUserService extends Controller
             ->setFrom($emailFrom, $senderName)
             ->setTo($emailTo)
             ->setBody(
-                $this->controller->renderView(
+                $this->editUserController->renderView(
                     'send-email/send-reactivation-email.html.twig',
                     array(
                         'login' => $form->getLogin(),
@@ -200,6 +200,6 @@ class EditUserService extends Controller
             )
         ;
 
-        return $this->controller->get('mailer')->send($message);
+        return $this->editUserController->get('mailer')->send($message);
     }
 }

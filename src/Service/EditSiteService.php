@@ -13,23 +13,23 @@ use Symfony\Component\HttpFoundation\Request;
 
 class EditSiteService extends Controller
 {
-    protected EditSiteController $controller;
+    protected EditSiteController $editSiteController;
     protected Config $config;
 
     public function __construct(
-        EditSiteController $controller,
+        EditSiteController $editSiteController,
         Config $config
     ) {
-        $this->controller = $controller;
+        $this->editSiteController = $editSiteController;
         $this->config = $config;
     }
 
     public function formAction(Request $request, int $site): array
     {
-        $em = $this->controller->getDoctrine()->getManager();
+        $em = $this->editSiteController->getDoctrine()->getManager();
 
         $editSiteForm = new EditSiteForm();
-        $form = $this->controller->createForm(
+        $form = $this->editSiteController->createForm(
             EditSiteFormType::class,
             $editSiteForm
         );
@@ -69,7 +69,7 @@ class EditSiteService extends Controller
             $editSiteForm->setName($siteData->getName());
             $editSiteForm->setUrl($siteData->getUrl());
             $editSiteForm->setVisible($siteData->getVisible());
-            $form = $this->controller->createForm(
+            $form = $this->editSiteController->createForm(
                 EditSiteFormType::class,
                 $editSiteForm
             );

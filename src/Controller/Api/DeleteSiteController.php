@@ -18,7 +18,7 @@ class DeleteSiteController extends Controller
      */
     public function deleteSiteAction(Request $request): object
     {
-        $validator = new DeleteSiteValidator(
+        $deleteSiteValidator = new DeleteSiteValidator(
             $this->getDoctrine()->getManager()
         );
 
@@ -29,7 +29,10 @@ class DeleteSiteController extends Controller
             ($request->getContent()) ? $request->getContent() : '{}'
         );
 
-        $deleteSiteService = new DeleteSiteService($this, $validator);
+        $deleteSiteService = new DeleteSiteService(
+            $this,
+            $deleteSiteValidator
+        );
         $message = $deleteSiteService->deleteSiteMessage(
             $user,
             $password,

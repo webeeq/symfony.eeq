@@ -19,7 +19,7 @@ class AddSiteController extends Controller
     public function addSiteAction(Request $request): object
     {
         $config = new Config($this);
-        $validator = new AddSiteValidator(
+        $addSiteValidator = new AddSiteValidator(
             $this->getDoctrine()->getManager()
         );
 
@@ -30,7 +30,11 @@ class AddSiteController extends Controller
             ($request->getContent()) ? $request->getContent() : '{}'
         );
 
-        $addSiteService = new AddSiteService($this, $config, $validator);
+        $addSiteService = new AddSiteService(
+            $this,
+            $config,
+            $addSiteValidator
+        );
         $message = $addSiteService->addSiteMessage(
             $user,
             $password,

@@ -19,7 +19,7 @@ class UpdateSiteController extends Controller
     public function updateSiteAction(Request $request): object
     {
         $config = new Config($this);
-        $validator = new UpdateSiteValidator(
+        $updateSiteValidator = new UpdateSiteValidator(
             $this->getDoctrine()->getManager()
         );
 
@@ -30,7 +30,11 @@ class UpdateSiteController extends Controller
             ($request->getContent()) ? $request->getContent() : '{}'
         );
 
-        $updateSiteService = new UpdateSiteService($this, $config, $validator);
+        $updateSiteService = new UpdateSiteService(
+            $this,
+            $config,
+            $updateSiteValidator
+        );
         $message = $updateSiteService->updateSiteMessage(
             $user,
             $password,

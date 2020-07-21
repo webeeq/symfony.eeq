@@ -13,21 +13,21 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ContactFormService extends Controller
 {
-    protected ContactFormController $controller;
+    protected ContactFormController $contactFormController;
     protected Config $config;
 
     public function __construct(
-        ContactFormController $controller,
+        ContactFormController $contactFormController,
         Config $config
     ) {
-        $this->controller = $controller;
+        $this->contactFormController = $contactFormController;
         $this->config = $config;
     }
 
     public function formAction(Request $request): array
     {
         $contactFormForm = new ContactFormForm();
-        $form = $this->controller->createForm(
+        $form = $this->contactFormController->createForm(
             ContactFormFormType::class,
             $contactFormForm
         );
@@ -60,7 +60,7 @@ class ContactFormService extends Controller
             ->setFrom($emailFrom)
             ->setTo($emailTo)
             ->setBody(
-                $this->controller->renderView(
+                $this->contactFormController->renderView(
                     'send-email/send-email.html.twig',
                     array(
                         'emailFrom' => $emailFrom,
@@ -73,6 +73,6 @@ class ContactFormService extends Controller
             )
         ;
 
-        return $this->controller->get('mailer')->send($message);
+        return $this->contactFormController->get('mailer')->send($message);
     }
 }

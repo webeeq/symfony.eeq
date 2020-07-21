@@ -13,23 +13,23 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AcceptSiteService extends Controller
 {
-    protected AcceptSiteController $controller;
+    protected AcceptSiteController $acceptSiteController;
     protected Config $config;
 
     public function __construct(
-        AcceptSiteController $controller,
+        AcceptSiteController $acceptSiteController,
         Config $config
     ) {
-        $this->controller = $controller;
+        $this->acceptSiteController = $acceptSiteController;
         $this->config = $config;
     }
 
     public function formAction(Request $request, int $site): array
     {
-        $em = $this->controller->getDoctrine()->getManager();
+        $em = $this->acceptSiteController->getDoctrine()->getManager();
 
         $acceptSiteForm = new AcceptSiteForm();
-        $form = $this->controller->createForm(
+        $form = $this->acceptSiteController->createForm(
             AcceptSiteFormType::class,
             $acceptSiteForm
         );
@@ -102,7 +102,7 @@ class AcceptSiteService extends Controller
             $acceptSiteForm->setUrl($acceptSiteData->getUrl());
             $acceptSiteForm->setActive($acceptSiteData->getActive());
             $acceptSiteForm->setVisible($acceptSiteData->getVisible());
-            $form = $this->controller->createForm(
+            $form = $this->acceptSiteController->createForm(
                 AcceptSiteFormType::class,
                 $acceptSiteForm
             );
@@ -135,7 +135,7 @@ class AcceptSiteService extends Controller
             ->setFrom($emailFrom, $senderName)
             ->setTo($emailTo)
             ->setBody(
-                $this->controller->renderView(
+                $this->acceptSiteController->renderView(
                     'send-email/send-acceptation-email.html.twig',
                     array(
                         'accept' => $accept,
@@ -147,6 +147,6 @@ class AcceptSiteService extends Controller
             )
         ;
 
-        return $this->controller->get('mailer')->send($message);
+        return $this->acceptSiteController->get('mailer')->send($message);
     }
 }

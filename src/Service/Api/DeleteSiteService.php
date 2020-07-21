@@ -10,15 +10,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DeleteSiteService extends Controller
 {
-    protected DeleteSiteController $controller;
-    protected DeleteSiteValidator $validator;
+    protected DeleteSiteController $deleteSiteController;
+    protected DeleteSiteValidator $deleteSiteValidator;
 
     public function __construct(
-        DeleteSiteController $controller,
-        DeleteSiteValidator $validator
+        DeleteSiteController $deleteSiteController,
+        DeleteSiteValidator $deleteSiteValidator
     ) {
-        $this->controller = $controller;
-        $this->validator = $validator;
+        $this->deleteSiteController = $deleteSiteController;
+        $this->deleteSiteValidator = $deleteSiteValidator;
     }
 
     public function deleteSiteMessage(
@@ -26,24 +26,24 @@ class DeleteSiteService extends Controller
         string $password,
         object $data
     ): object {
-        $em = $this->controller->getDoctrine()->getManager();
+        $em = $this->deleteSiteController->getDoctrine()->getManager();
 
-        $this->validator->validate($user, $password, $data);
-        if ($this->validator->isValid()) {
+        $this->deleteSiteValidator->validate($user, $password, $data);
+        if ($this->deleteSiteValidator->isValid()) {
             $siteData = $em->getRepository('App:Site')
                 ->deleteSiteData($data->id);
             if ($siteData) {
-                $this->validator->addMessage(
+                $this->deleteSiteValidator->addMessage(
                     'Dane strony www zostały usunięte.'
                 );
-                $this->validator->setOk(true);
+                $this->deleteSiteValidator->setOk(true);
             } else {
-                $this->validator->addMessage(
+                $this->deleteSiteValidator->addMessage(
                     'Usunięcie danych strony www nie powiodło się.'
                 );
             }
         }
 
-        return $this->validator;
+        return $this->deleteSiteValidator;
     }
 }

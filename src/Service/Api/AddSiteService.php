@@ -12,18 +12,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AddSiteService extends Controller
 {
-    protected AddSiteController $controller;
+    protected AddSiteController $addSiteController;
     protected Config $config;
-    protected AddSiteValidator $validator;
+    protected AddSiteValidator $addSiteValidator;
 
     public function __construct(
-        AddSiteController $controller,
+        AddSiteController $addSiteController,
         Config $config,
-        AddSiteValidator $validator
+        AddSiteValidator $addSiteValidator
     ) {
-        $this->controller = $controller;
+        $this->addSiteController = $addSiteController;
         $this->config = $config;
-        $this->validator = $validator;
+        $this->addSiteValidator = $addSiteValidator;
     }
 
     public function addSiteMessage(
@@ -31,10 +31,10 @@ class AddSiteService extends Controller
         string $password,
         object $data
     ): object {
-        $em = $this->controller->getDoctrine()->getManager();
+        $em = $this->addSiteController->getDoctrine()->getManager();
 
-        $this->validator->validate($user, $password, $data, $apiUser);
-        if ($this->validator->isValid()) {
+        $this->addSiteValidator->validate($user, $password, $data, $apiUser);
+        if ($this->addSiteValidator->isValid()) {
             $site = new Site();
             $site->setUser($apiUser);
             $site->setActive(false);
@@ -48,17 +48,17 @@ class AddSiteService extends Controller
             $em->persist($site);
             try {
                 $em->flush();
-                $this->validator->addMessage(
+                $this->addSiteValidator->addMessage(
                     'Strona www została dodana i oczekuje na akceptację.'
                 );
-                $this->validator->setOk(true);
+                $this->addSiteValidator->setOk(true);
             } catch (\Exception $e) {
-                $this->validator->addMessage(
+                $this->addSiteValidator->addMessage(
                     'Dodanie strony www nie powiodło się.'
                 );
             }
         }
 
-        return $this->validator;
+        return $this->addSiteValidator;
     }
 }

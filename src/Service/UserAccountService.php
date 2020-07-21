@@ -15,16 +15,16 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserAccountService extends Controller
 {
-    protected UserAccountController $controller;
+    protected UserAccountController $userAccountController;
     protected Config $config;
     protected PageNavigatorHtml $html;
 
     public function __construct(
-        UserAccountController $controller,
+        UserAccountController $userAccountController,
         Config $config,
         PageNavigatorHtml $html
     ) {
-        $this->controller = $controller;
+        $this->userAccountController = $userAccountController;
         $this->config = $config;
         $this->html = $html;
     }
@@ -35,10 +35,10 @@ class UserAccountService extends Controller
         int $id,
         int $level
     ): array {
-        $em = $this->controller->getDoctrine()->getManager();
+        $em = $this->userAccountController->getDoctrine()->getManager();
 
         $userAccountForm = new UserAccountForm();
-        $form = $this->controller->createForm(
+        $form = $this->userAccountController->createForm(
             UserAccountFormType::class,
             $userAccountForm
         );

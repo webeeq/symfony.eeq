@@ -11,18 +11,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class UpdateSiteService extends Controller
 {
-    protected UpdateSiteController $controller;
+    protected UpdateSiteController $updateSiteController;
     protected Config $config;
-    protected UpdateSiteValidator $validator;
+    protected UpdateSiteValidator $updateSiteValidator;
 
     public function __construct(
-        UpdateSiteController $controller,
+        UpdateSiteController $updateSiteController,
         Config $config,
-        UpdateSiteValidator $validator
+        UpdateSiteValidator $updateSiteValidator
     ) {
-        $this->controller = $controller;
+        $this->updateSiteController = $updateSiteController;
         $this->config = $config;
-        $this->validator = $validator;
+        $this->updateSiteValidator = $updateSiteValidator;
     }
 
     public function updateSiteMessage(
@@ -30,10 +30,10 @@ class UpdateSiteService extends Controller
         string $password,
         object $data
     ): object {
-        $em = $this->controller->getDoctrine()->getManager();
+        $em = $this->updateSiteController->getDoctrine()->getManager();
 
-        $this->validator->validate($user, $password, $data);
-        if ($this->validator->isValid()) {
+        $this->updateSiteValidator->validate($user, $password, $data);
+        if ($this->updateSiteValidator->isValid()) {
             $siteData = $em->getRepository('App:Site')->setSiteData(
                 $data->id,
                 $data->visible,
@@ -42,17 +42,17 @@ class UpdateSiteService extends Controller
                 $this->config->getDateTimeNow()
             );
             if ($siteData) {
-                $this->validator->addMessage(
+                $this->updateSiteValidator->addMessage(
                     'Dane strony www zostały zapisane.'
                 );
-                $this->validator->setOk(true);
+                $this->updateSiteValidator->setOk(true);
             } else {
-                $this->validator->addMessage(
+                $this->updateSiteValidator->addMessage(
                     'Zapisanie danych strony www nie powiodło się.'
                 );
             }
         }
 
-        return $this->validator;
+        return $this->updateSiteValidator;
     }
 }

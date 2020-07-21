@@ -10,25 +10,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ShowSiteService extends Controller
 {
-    protected ShowSiteController $controller;
+    protected ShowSiteController $showSiteController;
     protected Config $config;
 
     public function __construct(
-        ShowSiteController $controller,
+        ShowSiteController $showSiteController,
         Config $config
     ) {
-        $this->controller = $controller;
+        $this->showSiteController = $showSiteController;
         $this->config = $config;
     }
 
     public function urlAction(): array
     {
-        $em = $this->controller->getDoctrine()->getManager();
-
+        $em = $this->showSiteController->getDoctrine()->getManager();
+        $id = $this->showSiteController->getUser()->getId();
         $url = '';
 
         $userMaxShow = $em->getRepository('App:User')
-            ->isUserMaxShow($id = $this->controller->getUser()->getId());
+            ->isUserMaxShow($id);
         if (!$userMaxShow) {
             $siteRandomUrl = $em->getRepository('App:Site')
                 ->getSiteRandomUrl($id);
