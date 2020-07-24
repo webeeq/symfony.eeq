@@ -26,6 +26,7 @@ class PageNavigatorHtml
             $toLevel = ($number > $maxLevel) ? $maxLevel : $number;
             $previousLevel = $level - 1;
             $nextLevel = $level + 1;
+            $url = htmlspecialchars($url);
             if ($maxLevel > $levelLimit) {
                 $pageNavigator .= ($level > $minLevel) ? '<a href="' . $url
                     . $minLevel . '">...</a>' : '';
